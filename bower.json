@@ -1,0 +1,18 @@
+{
+  "name": "inventosys",
+  "version": "1.0.0",
+  "authors": [
+    "osroflo <osroflo@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.5",
+    "font-awesome": "4.4.0",
+    "jquery": "~2.1.4",
+    "metisMenu": "1.1.3",
+    "startbootstrap-sb-admin-2": "~1.0.7",
+    "bower": "*",
+    "install": "~1.0.4",
+    "startbootstrap-sb-admin-2-sass": "~1.0.7"
+  }
+}
