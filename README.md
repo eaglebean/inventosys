@@ -8,6 +8,8 @@ Como installar
 
 3 - bower install
 
-4 - gulp
+4 - sudo npm install
+
+5 - gulp
 
 
