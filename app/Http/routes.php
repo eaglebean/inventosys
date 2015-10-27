@@ -27,4 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Dashboard
     Route::get('dashboard', 'DashboardController@index');
 
+    // Users
+    Route::get('users', ['as' => 'users.index', 'uses' => 'UsersController@index']);
+
 });
