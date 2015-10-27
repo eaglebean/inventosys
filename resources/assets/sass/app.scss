@@ -5,5 +5,7 @@
 
 
 
-
-.test{color:$primaryColor;}
+/*
+ * Overrides
+ */
+.panel{border-radius:$corner_radius;}
