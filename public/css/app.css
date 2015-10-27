@@ -7920,7 +7920,10 @@ table.dataTable thead .sorting:after {
     .panel-yellow a:hover {
       color: #df8a13; }
 
-.test {
-  color: red; }
+/*
+ * Overrides
+ */
+.panel {
+  border-radius: 0px !important; }
 
 /*# sourceMappingURL=app.css.map */
