@@ -10,73 +10,84 @@
     <div id="page-wrapper" style="min-height: 497px;">
         <div class="container-fluid">
             <div class="row">
+
                 <div class="col-lg-12">
                     <h1 class="page-header">Users</h1>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Hover Rows
-                        </div>
 
+
+
+
+                    <div class="panel panel-default">
+
+                        <!-- panel-heading -->
+                        <div class="panel-heading">
+
+                            <!-- toolbar -->
+                            <div class="input-group">
+                                <input type="text" class="form-control" aria-label="Search" placeholder="Search...">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="fa fa-plus insert-icon"> </i> Create User</a></li>
+                                        <li><a href="#"><i class="fa fa-file-o"> </i> Import Users</a></li>
+
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#"><i class="fa fa-trash delete-icon"> </i> Delete </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.toolbar -->
+
+                        </div>
                         <!-- /.panel-heading -->
+
+                        <!-- panel-body -->
                         <div class="panel-body">
+
+                            <!-- table -->
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th><input type="checkbox" id="checkall"></th>
                                             <th>Nombre</th>
                                             <th>Email</th>
                                             <th>Creado</th>
-                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juanito Banana</td>
-                                            <td>juanito.banana@gmail.com</td>
-                                            <td>01-01-2015 9:55 AM</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juanito Banana</td>
-                                            <td>juanito.banana@gmail.com</td>
-                                            <td>01-01-2015 9:55 AM</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juanito Banana</td>
-                                            <td>juanito.banana@gmail.com</td>
-                                            <td>01-01-2015 9:55 AM</td>
-                                        </tr>
+                                        @foreach ($users as $user )
+                                            <tr>
+                                                <td><input type="checkbox" id="user_id"></td>
+                                                <td>{{$user->name}}</td>
+                                                <td>{{$user->email}}</td>
+                                                <td>{{$user->created_at}}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
-
-                                <nav>
-                                    <ul class="pagination">
-                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                    </ul>
-                               </nav>
-
                             </div>
-                            <!-- /.table-responsive -->
+                            <!-- /.table -->
+
+                            <!-- pagination -->
+                            {!! $users->render() !!}
+                            <!-- ./pagination -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
 
 
+
+
+
+
                 </div>
-                 <!-- /.col-lg-12 -->
+                <!-- /.col-lg-12 -->
+
             </div>
-               <!-- /.row -->
+            <!-- /.row -->
+
         </div>
         <!-- /.container-fluid -->
     </div>
