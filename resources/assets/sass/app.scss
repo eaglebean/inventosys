@@ -2,6 +2,8 @@
 @import 'bootstrap';
 @import 'font-awesome';
 @import 'sb-admin-2';
+@import 'animate';
+
 
 
 
@@ -9,3 +11,10 @@
  * Overrides
  */
 .panel{border-radius:$corner_radius;}
+
+
+
+/*
+ * Paddings, margins and spaces
+ */
+.margin-bottom{margin-bottom: 10px;}
