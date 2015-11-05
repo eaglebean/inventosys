@@ -14,7 +14,7 @@
     "install": "~1.0.4",
     "startbootstrap-sb-admin-2-sass": "~1.0.7",
     "bootbox.js": "bootbox#4.4.0",
-    "pnotify": "~2.1.0",
-    "animate-sass": "~0.6.4"
+    "animate-sass": "~0.6.4",
+    "pnotify": "~2.1.0"
   }
 }
