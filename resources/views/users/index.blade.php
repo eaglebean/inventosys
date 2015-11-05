@@ -29,11 +29,11 @@
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#"><i class="fa fa-plus insert-icon"> </i> Create User</a></li>
-                                        <li><a href="#"><i class="fa fa-file-o"> </i> Import Users</a></li>
+                                        <li><a href="#" id="action_user_create"><i class="fa fa-plus insert-icon"> </i> Create User</a></li>
+                                        <li><a href="#" id="action_user_import"><i class="fa fa-file-o"> </i> Import Users</a></li>
 
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="#"><i class="fa fa-trash delete-icon"> </i> Delete </a></li>
+                                        <li><a href="#" id="action_user_delete"><i class="fa fa-trash delete-icon"> </i> Delete </a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -93,4 +93,8 @@
     </div>
     <!-- /#page-wrapper -->
 
+@stop
+@section("scripts")
+    @parent
+    <script src="/js/users.js"></script>
 @stop
