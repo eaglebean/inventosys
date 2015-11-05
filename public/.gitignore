@@ -4,6 +4,10 @@
 # But not these files...
 !.gitignore
 !users.js
+!index.php
+!.htaccess
+!favicon.ico
+!robots.txt
 
 # ...even if they are in subdirectories
 !*/
