@@ -2,7 +2,7 @@
 
 @section('title')
   @parent
-  - Usuarios
+  - Orden de compra (Ingreso manual)
 @stop
 
 @section('content')
@@ -12,9 +12,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Usuarios</h1>
-
-
+                    <h1 class="page-header">Ordenes de compra</h1>
 
 
 
@@ -51,18 +49,25 @@
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox" id="checkall"></th>
-                                            <th>Nombre</th>
-                                            <th>Email</th>
-                                            <th>Creado</th>
+                                            <th>Numero</th>
+                                            <th>Descripcion</th>
+                                            <th>Usuario</th>
+                                            <th>Creada</th>
+                                            <th>Actualizada</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user )
+                                        @foreach ($orders as $order )
                                             <tr>
                                                 <td><input type="checkbox" id="user_id"></td>
-                                                <td>{{$user->name}}</td>
-                                                <td>{{$user->email}}</td>
-                                                <td>{{$user->created_at}}</td>
+                                                <td>{{$order->number}}</td>
+                                                <td>{{$order->description}}</td>
+                                                <td>{{$order->user->name}}</td>
+                                                <td>{{$order->created_at}}</td>
+                                                <td>{{$order->updated_at}}</td>
+
+
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -71,7 +76,7 @@
                             <!-- /.table -->
 
                             <!-- pagination -->
-                            {!! $users->render() !!}
+
                             <!-- ./pagination -->
                         </div>
                         <!-- /.panel-body -->
@@ -96,5 +101,5 @@
 @stop
 @section("scripts")
     @parent
-    <script src="/js/users.js"></script>
+    <script src="/js/orders.js"></script>
 @stop

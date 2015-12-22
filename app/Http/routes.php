@@ -11,9 +11,14 @@
 |
  */
 
+/**
+ * View routing
+ */
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('orders', 'OrdersController@index');
+Route::post('orders/store', 'OrdersController@store');
 
 // Authentication
 Route::controllers([
@@ -28,6 +33,27 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', 'DashboardController@index');
 
     // Users
-    Route::get('users', ['as' => 'users.index', 'uses' => 'UsersController@index']);
+    Route::resource('usuarios', 'UsersController', [
+        'except' => ['show', 'store', 'update', 'destroy'],
+    ]);
+
+    // Orders
+    Route::get('ordenes/compras', 'OrdersController@purchase');
 
 });
+
+/**
+ * API routing
+ */
+Route::group(['prefix' => 'api/v1'], function () {
+
+    Route::get('users', ['as' => 'api.v1.users.showall', 'uses' => 'UsersController@showAll']);
+
+    Route::resource('users', 'UsersController', [
+        'except' => ['create', 'index', 'edit'],
+    ]);
+
+});
+
+// Route::get('api/v1/users', 'UsersController@showAll');
+// Route::get('api/v1/users/{key}', 'UsersController@show');
