@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Sistema de inventario">
-    <meta name="author" content="Quick Systems - Mazamitla">
+    <meta name="author" content="Softlan - Mazamitla 1.0">
+
+    <!-- token has been disabled because it cause token mistmatch error when API is call externally (POST). app/Http/kernel.php -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>
       @section('title')
@@ -17,8 +20,8 @@
     @section("styles")
 
       <!-- App CSS -->
-      <link rel="stylesheet" type="text/css" href="css/app.css">
-      <link rel="stylesheet" type="text/css" href="css/metisMenu.min.css">
+      <link rel="stylesheet" type="text/css" href="/css/app.css">
+      <link rel="stylesheet" type="text/css" href="/css/metisMenu.min.css">
 
 
     <!-- open sans font -->
@@ -281,14 +284,33 @@
                                 <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="/users"><i class="fa fa-users fa-fw"></i> Users</a>
+                                <a href="/usuarios"><i class="fa fa-users fa-fw"></i> Users</a>
 
                             </li>
                             <li>
                                 <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                             </li>
                             <li>
-                                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                                <a href="#"><i class="fa fa-edit fa-fw"></i> Ordenes<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/ordenes/compras">Compras</a>
+                                    </li>
+                                    <li>
+                                        <a href="/ordenes/ventas">Ventas</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-edit fa-fw"></i>Inventario<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="panels-wells.html">Egresar productos</a>
+                                    </li>
+                                    <li>
+                                        <a href="buttons.html">Status</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
@@ -380,9 +402,11 @@
       <!-- Metis Menu Plugin JavaScript -->
       <script src="/js/metisMenu.min.js"></script>
 
-
        <!-- Custom Theme JavaScript -->
       <script src="/js/sb-admin-2.js"></script>
+
+      <!-- bootbox -->
+      <script src="/js/bootbox.js"></script>
     @show
 
   </body>

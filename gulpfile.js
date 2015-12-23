@@ -16,6 +16,7 @@ var paths = {
     'bootstrap': './vendor/bower_components/bootstrap-sass/assets/',
     'fontawesome': './vendor/bower_components/font-awesome/',
     'sb_admin_2': './vendor/bower_components/startbootstrap-sb-admin-2-sass/'
+
 }
 
 elixir(function(mix) {
@@ -27,7 +28,8 @@ elixir(function(mix) {
             [
                 paths.bootstrap + 'stylesheets/',
                 paths.fontawesome + 'scss/',
-                paths.sb_admin_2 + 'sass/'
+                paths.sb_admin_2 + 'sass/',
+                paths.vendor + 'animate-sass/'
             ]
         }
     )
@@ -38,7 +40,7 @@ elixir(function(mix) {
     .copy(paths.vendor + 'metisMenu/dist/metisMenu.min.js', 'public/js')
     .copy(paths.vendor + 'metisMenu/dist/metisMenu.min.css', 'public/css')
     .copy(paths.sb_admin_2 + 'dist/js/sb-admin-2.js', 'public/js')
-
-
-
+    .copy(paths.vendor + 'bootbox.js/bootbox.js', 'public/js')
+    .copy(paths.vendor + 'pnotify/src/*.min.js', 'public/js')
+    .copy(paths.vendor + 'pnotify/src/*.min.css', 'public/css')
 });

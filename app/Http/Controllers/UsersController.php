@@ -8,82 +8,97 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+
+    // TODO:
+    // - Add APIController with transformers
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Layer
+    |--------------------------------------------------------------------------
+    |
+    | Declare all the methods to manage data directly to the storage without UI
+    |
      */
-    public function index()
-    {
-        $users = User::paginate(10);
 
-        $data = ['users' => $users];
-
-        return view('users.index', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        if (isset($key)) {
+            if (is_numeric($key)) {
+                $users = User::find($key);
+            } else {
+                $users = User::where("name", "like", "%$key%");
+                $users->paginate(10);
+            }
+        }
+
+        return response()->json($users);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
+    public function showAll()
     {
-        //
+        $users = User::paginate(10);
+        return $users;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
+    // public function read(Request $request)
+    // {
+    //     $limit = $request->get('limit') ?: 10;
+    //     // return all
+    //     $users = User::paginate($limit);
+
+    //     return response()->json($users);
+
+    //     //  if (isset($key)) {
+    //     //     if (is_numeric($key)) {
+    //     //         $users = User::find($key);
+    //     //     } else {
+    //     //         $users = User::where("name", "like", "%$key%");
+    //     //         $users->paginate(10);
+    //     //     }
+    //     // }
+    //     // return response()->json($users);
+    // }
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($id)
+    {
+        //
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Interface Layer
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can declare all the methods used to dsipatch the UI or
+    | laravel views
+    |
+     */
+
+    public function index()
+    {
+        $users = $this->showAll();
+        $data = ['users' => $users];
+
+        return view('users.index', $data);
+    }
+
+    public function create()
+    {
+        //
+    }
+
+    public function edit($id)
     {
         //
     }
