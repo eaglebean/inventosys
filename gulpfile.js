@@ -43,4 +43,6 @@ elixir(function(mix) {
     .copy(paths.vendor + 'bootbox.js/bootbox.js', 'public/js')
     .copy(paths.vendor + 'pnotify/src/*.min.js', 'public/js')
     .copy(paths.vendor + 'pnotify/src/*.min.css', 'public/css')
+    .copy(paths.vendor + 'vue/dist/vue.js', 'public/js')
+
 });

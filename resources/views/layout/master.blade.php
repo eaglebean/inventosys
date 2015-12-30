@@ -299,6 +299,9 @@
                                     <li>
                                         <a href="/ordenes/ventas">Ventas</a>
                                     </li>
+                                    <li>
+                                        <a href="/ordenes">Lista</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -407,6 +410,10 @@
 
       <!-- bootbox -->
       <script src="/js/bootbox.js"></script>
+
+      <!-- vue -->
+      <script src="/js/vue.js"></script>
+
     @show
 
   </body>

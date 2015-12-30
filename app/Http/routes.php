@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Orders
     Route::get('ordenes/compras', 'OrdersController@purchase');
+    Route::get('ordenes', 'OrdersController@index');
 
 });
 
