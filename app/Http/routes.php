@@ -17,8 +17,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('orders', 'OrdersController@index');
-Route::post('orders/store', 'OrdersController@store');
 
 // Authentication
 Route::controllers([
@@ -40,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Orders
     Route::get('ordenes/compras', 'OrdersController@purchase');
     Route::get('ordenes', 'OrdersController@index');
+    Route::post('orders', 'OrdersController@store');
 
 });
 
@@ -48,11 +47,13 @@ Route::group(['middleware' => 'auth'], function () {
  */
 Route::group(['prefix' => 'api/v1'], function () {
 
-    Route::get('users', ['as' => 'api.v1.users.showall', 'uses' => 'UsersController@showAll']);
+    // Route::get('users', ['as' => 'api.v1.users.showall', 'uses' => 'UsersController@showAll']);
 
-    Route::resource('users', 'UsersController', [
-        'except' => ['create', 'index', 'edit'],
-    ]);
+    // Route::resource('users', 'UsersController', [
+    //     'except' => ['create', 'index', 'edit'],
+    // ]);
+
+    Route::resource('orden', 'OrdersController');
 
 });
 

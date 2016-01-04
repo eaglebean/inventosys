@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\OrderItems;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 
@@ -42,13 +41,18 @@ class OrdersController extends Controller
         // Get url variables
         $number = $request->input('order_number');
         $description = $request->input('order_description');
-        $type = $request->input('order_type');
+        $type = $request->input('order_type', 1); // 1 = Purchase
+        $status = $request->input('status_id', 1); // 1 = new
 
         // user_id = 2 is contpaq if any other system is creating orders throug the api,
         // the user_id should be passed through the API
         $user_id = $request->input('user_id', 2);
 
-        $items = $request->input('order_items');
+        //  Order info
+        $items = $request->input('items');
+
+        // Items info
+        $items = $request->input('items');
 
         // Save order
         $order = new Orders;

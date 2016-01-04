@@ -8,7 +8,7 @@
     <meta name="author" content="Softlan - Mazamitla 1.0">
 
     <!-- token has been disabled because it cause token mistmatch error when API is call externally (POST). app/Http/kernel.php -->
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta id="token" name="token" value="{{ csrf_token() }}" >
 
     <title>
       @section('title')
@@ -413,6 +413,8 @@
 
       <!-- vue -->
       <script src="/js/vue.js"></script>
+      <script src="/js/vue-resource.min.js"></script>
+
 
     @show
 
