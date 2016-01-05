@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Orders extends Model
 {
     protected $table = 'orders';
+    protected $fillable = ['serie', 'folio', 'making', 'description', 'order_type_id', 'user_id'];
 
     /**
      * Get the items for the order.
@@ -24,5 +25,4 @@ class Orders extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
-
 }

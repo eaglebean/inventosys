@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderItems;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 
@@ -38,40 +39,34 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        // Get url variables
-        $number = $request->input('order_number');
-        $description = $request->input('order_description');
-        $type = $request->input('order_type', 1); // 1 = Purchase
-        $status = $request->input('status_id', 1); // 1 = new
+        // Get info from url variables
+        $order_array = $request->input('order', []);
+        $items_array = $request->input('items', []);
 
-        // user_id = 2 is contpaq if any other system is creating orders throug the api,
-        // the user_id should be passed through the API
-        $user_id = $request->input('user_id', 2);
+        if (count($order_array) > 0) {
+            // Create order
+            $order = Orders::create($order_array);
+            $order->find($order->id);
 
-        //  Order info
-        $items = $request->input('items');
+            // Get order items
+            if (count($items_array) > 0) {
+                foreach ($items_array as $item) {
+                    $items[] = new OrderItems($item);
+                }
 
-        // Items info
-        $items = $request->input('items');
+                $order->items()->saveMany($items);
+            }
 
-        // Save order
-        $order = new Orders;
-        $order->number = $number;
-        $order->description = $description;
-        $order->order_type_id = $type;
-        $order->user_id = $user_id;
-        $order->save();
-
-        $order->find($order->id);
-
-        // Get Items
-        $items = new OrderItems(['model' => 'a001', 'qty' => 10, 'description' => 'Chancletas abc 123', 'status_id' => 1]);
-
-        $order->items()->saveMany(array($items));
+            $status = true;
+            $message = 'La orden fue creada exitosamente!';
+        } else {
+            $status = false;
+            $message = 'La orden no tiene suficiente informacion!';
+        }
 
         return [
-            'status' => true,
-            'message' => 'Order was created',
+            'status' => $status,
+            'message' => $message,
         ];
     }
 

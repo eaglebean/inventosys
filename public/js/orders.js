@@ -24,20 +24,22 @@ $( document ).ready(function() {
                 folio:null,
                 making:null,
                 description:null,
-                type:1 //Compra table:orders_type
+                order_type_id:1, //Compra table:orders_type
+                user_id: user_id
             },
             items:[]
         },
+
+        /**
+         * Custom methods
+         */
         methods:{
-            /**
-             * Items
-             */
             addItems:function(){
                 this.items.push({
                     'model':this.model,
                     'qty':this.qty,
                     'description':this.description,
-                    'user_id':1
+                    'user_id':user_id
                 });
             },
 
@@ -62,20 +64,20 @@ $( document ).ready(function() {
              * API calls
              */
             createOrder:function(){
-                data = {'order':this.order, 'items':this.items};
+                if (this.items.length > 0) {
+                    data = {'order':this.order, 'items':this.items};
 
-                this.$http.post('/api/v1/orden', data).then(function(response){
-                    if (response.ok){
-                        console.log(response.data);
-                    } else {
-                        console.log('Spmething went wrong')
-                    }
+                    this.$http.post('/api/v1/orden', data).then(function(response){
+                        if (response.ok){
+                            console.log(response.data);
+                        } else {
+                            console.log('Something went wrong')
+                        }
+                    });
+                } else {
+                    bootbox.alert("Antes de crear la orden, asegurese de agregar articulos a la lista!");
+                }
 
-                });
-
-                // this.$http.post('/api/v1/orden', data, function(order){
-                //     console.log(order);
-                // });
             }
         },
 

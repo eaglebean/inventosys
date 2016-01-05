@@ -22,7 +22,7 @@
       <!-- App CSS -->
       <link rel="stylesheet" type="text/css" href="/css/app.css">
       <link rel="stylesheet" type="text/css" href="/css/metisMenu.min.css">
-
+      <link rel="stylesheet" type="text/css" href="/css/pnotify.css" media="all" />
 
     <!-- open sans font -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' /> -->
@@ -414,6 +414,10 @@
       <!-- vue -->
       <script src="/js/vue.js"></script>
       <script src="/js/vue-resource.min.js"></script>
+
+      <!-- pnotify -->
+      <script src="/js/pnotify.js"></script>
+
 
 
     @show

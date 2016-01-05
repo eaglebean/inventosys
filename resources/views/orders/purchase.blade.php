@@ -20,7 +20,7 @@
                             <!-- **************************************************************** -->
                             <!-- CHECK THE BEST WAY TO PASS USER INFO TO VIEWS!!!!  -->
                             <!-- **************************************************************** -->
-                            <strong>Informacion de la orden {{Auth::user()->id}}</strong>
+                            <strong>Informacion de la orden</strong>
                         </div>
 
                         <div class="panel-body">
@@ -55,7 +55,7 @@
 
                         <div class="panel-heading clearfix ">
                             <strong class="pull-left">Lista de articulos</strong>
-                            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#add-articles-modal">Add Items</button>
+                            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#add-articles-modal"><i class="fa fa-plus-circle"></i> Agregar Articulos</button>
                         </div>
 
                         <div class="panel-body">
@@ -68,7 +68,6 @@
                                                 <th>Cantidad</th>
                                                 <th>Modelo</th>
                                                 <th>Descripcion</th>
-                                                <th>Status</th>
                                                 <th>Usuario</th>
                                                 <th>...</th>
                                             </tr>
@@ -86,9 +85,7 @@
                                                 <td>
                                                     <input name="item_descirption" type="text" class="form-control input-md" v-model="item.description">
                                                 </td>
-                                                <td>
-                                                    <input name="item_status" type="text" class="form-control input-md" v-model="item.status_id">
-                                                </td>
+
                                                 <td>
                                                     @{{item.user_id}}
                                                 </td>
@@ -105,7 +102,7 @@
                     </div>
                     <hr>
 
-                    <button type="button" class="btn btn-primary pull-right" :disabled="errors" @click="createOrder">Guardar</button>
+                    <button type="button" class="btn btn-primary pull-right" :disabled="errors" @click="createOrder"><i class="fa fa-floppy-o"></i> Guardar</button>
                 </div>
                 <!-- /.col-lg-12 -->
 
@@ -166,5 +163,29 @@
 @stop
 @section("scripts")
     @parent
+    <script>
+        var user_id = {{Auth::user()->id}}
+
+        PNotify.prototype.options.styling = "bootstrap3";
+
+        new PNotify({
+            title: 'Regular Success',
+            text: 'That thing that you were trying to do worked!',
+            type: 'success'
+        });
+
+        // var animate_in = $('#animate_in').val(),
+        //     animate_out = $('#animate_out').val();
+        // new PNotify({
+        //     title: 'Animate.css Effect',
+        //     text: 'I use effects from Animate.css. Such smooth CSS3 transitions make me feel like butter.',
+        //     animate: {
+        //         animate: true,
+        //         in_class: animate_in,
+        //         out_class: animate_out
+        //     }
+        // });
+
+    </script>
     <script src="/js/orders.js"></script>
 @stop

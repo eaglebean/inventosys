@@ -34,17 +34,21 @@ elixir(function(mix) {
         }
     )
     .copy(paths.vendor + "jquery/dist/jquery.min.js", 'public/js')
-    .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
+
+    .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts/bootstrap')
     .copy(paths.fontawesome + 'fonts/**', 'public/fonts')
     .copy(paths.bootstrap + 'javascripts/bootstrap.min.js', 'public/js')
     .copy(paths.vendor + 'metisMenu/dist/metisMenu.min.js', 'public/js')
     .copy(paths.vendor + 'metisMenu/dist/metisMenu.min.css', 'public/css')
     .copy(paths.sb_admin_2 + 'dist/js/sb-admin-2.js', 'public/js')
     .copy(paths.vendor + 'bootbox.js/bootbox.js', 'public/js')
-    .copy(paths.vendor + 'pnotify/src/*.min.js', 'public/js')
-    .copy(paths.vendor + 'pnotify/src/*.min.css', 'public/css')
+    // pnotify
+    .copy(paths.vendor + 'pnotify/dist/*.js', 'public/js')
+    .copy(paths.vendor + 'pnotify/dist/*.css', 'public/css')
+    // vuejs
     .copy(paths.vendor + 'vue/dist/vue.js', 'public/js')
     .copy(paths.vendor + 'vue-resource/dist/vue-resource.min.js', 'public/js')
+
 
 
 });
