@@ -69,9 +69,10 @@ $( document ).ready(function() {
 
                     this.$http.post('/api/v1/orden', data).then(function(response){
                         if (response.ok){
-                            console.log(response.data);
+                            Splash.show('success', 'Muy bien!', response.data.message);
                         } else {
-                            console.log('Something went wrong')
+                            Splash.show('error', 'Ups!', response.data.message);
+                            
                         }
                     });
                 } else {

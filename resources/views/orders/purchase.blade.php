@@ -165,27 +165,6 @@
     @parent
     <script>
         var user_id = {{Auth::user()->id}}
-
-        PNotify.prototype.options.styling = "bootstrap3";
-
-        new PNotify({
-            title: 'Regular Success',
-            text: 'That thing that you were trying to do worked!',
-            type: 'success'
-        });
-
-        // var animate_in = $('#animate_in').val(),
-        //     animate_out = $('#animate_out').val();
-        // new PNotify({
-        //     title: 'Animate.css Effect',
-        //     text: 'I use effects from Animate.css. Such smooth CSS3 transitions make me feel like butter.',
-        //     animate: {
-        //         animate: true,
-        //         in_class: animate_in,
-        //         out_class: animate_out
-        //     }
-        // });
-
     </script>
     <script src="/js/orders.js"></script>
 @stop

@@ -23,6 +23,9 @@
       <link rel="stylesheet" type="text/css" href="/css/app.css">
       <link rel="stylesheet" type="text/css" href="/css/metisMenu.min.css">
       <link rel="stylesheet" type="text/css" href="/css/pnotify.css" media="all" />
+      <link rel="stylesheet" type="text/css" href="/css/pnotify.buttons.css" media="all" />
+      <link rel="stylesheet" type="text/css" href="/css/animate.min.css" media="all" />
+
 
     <!-- open sans font -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' /> -->
@@ -402,6 +405,14 @@
       <!-- Bootstrap Core JavaScript -->
       <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
+      <!-- pnotify -->
+      <script src="/js/pnotify.js"></script>
+      <script src="/js/pnotify.buttons.js"></script>
+      <script src="/js/pnotify.animate.js"></script>
+
+
+
+
       <!-- Metis Menu Plugin JavaScript -->
       <script src="/js/metisMenu.min.js"></script>
 
@@ -415,10 +426,7 @@
       <script src="/js/vue.js"></script>
       <script src="/js/vue-resource.min.js"></script>
 
-      <!-- pnotify -->
-      <script src="/js/pnotify.js"></script>
-
-
+      <script src="/js/app.js"></script>
 
     @show
 

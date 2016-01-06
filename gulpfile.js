@@ -28,8 +28,7 @@ elixir(function(mix) {
             [
                 paths.bootstrap + 'stylesheets/',
                 paths.fontawesome + 'scss/',
-                paths.sb_admin_2 + 'sass/',
-                paths.vendor + 'animate-sass/'
+                paths.sb_admin_2 + 'sass/'
             ]
         }
     )
@@ -48,6 +47,8 @@ elixir(function(mix) {
     // vuejs
     .copy(paths.vendor + 'vue/dist/vue.js', 'public/js')
     .copy(paths.vendor + 'vue-resource/dist/vue-resource.min.js', 'public/js')
+    // animate.css
+    .copy(paths.vendor + 'animate.css/animate.min.css', 'public/css')
 
 
 

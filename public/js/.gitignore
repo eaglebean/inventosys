@@ -5,4 +5,5 @@
 !.gitignore
 !users.js
 !orders.js
+!app.js
 
