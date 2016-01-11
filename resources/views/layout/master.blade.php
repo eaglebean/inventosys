@@ -287,11 +287,11 @@
                                 <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="/usuarios"><i class="fa fa-users fa-fw"></i> Users</a>
+                                <a href="/usuarios"><i class="fa fa-users fa-fw"></i> Usuarios</a>
 
                             </li>
                             <li>
-                                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a href="/productos"><i class="fa fa-table fa-fw"></i> Productos</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Ordenes<span class="fa arrow"></span></a>

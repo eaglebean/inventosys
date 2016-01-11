@@ -55,7 +55,7 @@
 
                         <div class="panel-heading clearfix ">
                             <strong class="pull-left">Lista de articulos</strong>
-                            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#add-articles-modal"><i class="fa fa-plus-circle"></i> Agregar Articulos</button>
+                            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#add-articles-modal" :disabled="allowAddArticles"><i class="fa fa-plus-circle"></i> Agregar Articulos</button>
                         </div>
 
                         <div class="panel-body">
@@ -141,7 +141,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary" @click="addItems">Agregar</button>
+                                <button type="button" class="btn btn-primary" @click="addItems" :disabled="errors">Agregar</button>
                             </div>
 
                         </div>

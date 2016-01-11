@@ -40,6 +40,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ordenes', 'OrdersController@index');
     Route::post('orders', 'OrdersController@store');
 
+    // Products
+    Route::get('productos', 'ProductsController@index');
+    Route::post('productos', 'ProductsController@store');
+    Route::post('productos/{id}', 'ProductsController@update');
+    Route::get('productos/{id}', 'ProductsController@show');
+    Route::delete('productos', 'ProductsController@destroy');
+
 });
 
 /**

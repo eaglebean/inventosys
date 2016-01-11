@@ -84,10 +84,10 @@ $( document ).ready(function() {
 
         computed: {
             errors: function() {
-                if (!this.order.serie || !this.order.folio || !this.order.making) 
-                    return true;
-                else
-                    return false;
+                return (!this.order.serie || !this.order.folio || !this.order.making);
+            },
+            allowAddArticles: function() {
+                return (!this.order.serie );
             }
         }
         // ready:function(){
