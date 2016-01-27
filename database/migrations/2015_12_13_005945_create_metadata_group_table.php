@@ -15,6 +15,8 @@ class CreateMetadataGroupTable extends Migration
         Schema::create('metadata_group', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
+            $table->text('description');
+            $table->boolean('active')->default(true);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

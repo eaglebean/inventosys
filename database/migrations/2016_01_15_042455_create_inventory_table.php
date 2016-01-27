@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateLocationTable extends Migration
+class CreateInventoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateLocationTable extends Migration
      */
     public function up()
     {
-        Schema::create('location', function (Blueprint $table) {
+        Schema::create('inventory', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('label');
-            $table->text('description');
-            $table->boolean('active')->default(true);
+            $table->integer('product_id');
+            $table->integer('metadata_id'); // Inventory metadata
+            $table->integer('total')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -29,6 +29,6 @@ class CreateLocationTable extends Migration
      */
     public function down()
     {
-        Schema::drop('location');
+        Schema::drop('inventory');
     }
 }

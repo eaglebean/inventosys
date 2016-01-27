@@ -8,6 +8,44 @@
  */
 
 $( document ).ready(function() {
+    //  Selectize initialization
+    $('#select-products').selectize({
+        maxOptions: 5,
+        valueField: 'id',
+        labelField: 'model',
+        searchField: 'model',
+        render: {
+            option: function(item, escape) {
+                
+                return '<div data-name="' + item.name + '" data-model="' + item.model + '>' +
+                        '<span class="label">' + escape(item.name) + '</span>' +
+                        (item.model ? '<span class="caption">' + escape(item.model) + '</span>' : '') +
+                        '</div>';
+            }
+        },
+        load: function(query, callback) {
+            if (!query.length) return callback();
+            $.ajax({
+                url: '/productos/buscar/' + encodeURIComponent(query),
+                type: 'GET',
+                dataType: 'json',
+                error: function() {
+                    callback();
+                },
+                success: function(res) {                    
+                    callback(res);
+                }
+            });
+        },
+        onChange:function(value) {
+            $.each(this.options, function( index, item ) {
+              if(item.id == value) 
+                Order.product = item;
+            });
+        }
+       
+    });
+
 
     // Vue.http.headers.common['X-CSRF-TOKEN'] = $('#token').attr('value');
 
@@ -18,7 +56,7 @@ $( document ).ready(function() {
             model:null,
             qty:null,
             description:null,
-
+            product:{},
             order:{
                 serie:null,
                 folio:null,
@@ -89,9 +127,16 @@ $( document ).ready(function() {
             allowAddArticles: function() {
                 return (!this.order.serie );
             }
-        }
+        },
         // ready:function(){
-           
+            
         // }
     });
+
+// Update vue
+$('#select-products').change(function(){
+    Order.model = this.value;
 });
+  
+});
+

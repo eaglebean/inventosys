@@ -49,7 +49,10 @@ elixir(function(mix) {
     .copy(paths.vendor + 'vue-resource/dist/vue-resource.min.js', 'public/js')
     // animate.css
     .copy(paths.vendor + 'animate.css/animate.min.css', 'public/css')
-
+    // selectize
+    .copy(paths.vendor + 'selectize/dist/js/standalone/selectize.min.js', 'public/js')
+    .copy(paths.vendor + 'selectize/dist/css/selectize.bootstrap3.css', 'public/css')
+    
 
 
 });

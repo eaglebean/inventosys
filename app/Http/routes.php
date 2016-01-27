@@ -45,7 +45,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('productos', 'ProductsController@store');
     Route::post('productos/{id}', 'ProductsController@update');
     Route::get('productos/{id}', 'ProductsController@show');
+    Route::get('productos/buscar/{keyword}', 'ProductsController@search');
     Route::delete('productos', 'ProductsController@destroy');
+
+    // Inventario
+    Route::get('inventario/reportes', 'InventoryController@index');
+    Route::get('inventario/ingresar', 'InventoryController@create');
 
 });
 
@@ -61,6 +66,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     // ]);
 
     Route::resource('orden', 'OrdersController');
+    Route::get('productos/buscar/{keyword}', 'ProductsController@search');
 
 });
 

@@ -69,6 +69,18 @@ class ProductsController extends Controller
     }
 
     /**
+     * Display the specified resource by name.
+     *
+     * @param  string  $keyword
+     * @return Response
+     */
+    public function search($keyword)
+    {
+        $product = Products::where("model", "LIKE", "%{$keyword}%")->get();
+        return Response::json($product);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

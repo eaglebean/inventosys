@@ -18,6 +18,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('order_id');
             $table->string('model');
             $table->integer('qty');
+            $table->integer('entered_qty');
             $table->text('description');
             $table->integer('status_id');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

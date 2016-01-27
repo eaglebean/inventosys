@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateUsersRoles extends Migration
+class CreateRackLocationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateUsersRoles extends Migration
      */
     public function up()
     {
-        Schema::create('users_roles', function (Blueprint $table) {
+        Schema::create('rack_location', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('role_id');
+            $table->integer('warehouse_location_id');
+            $table->integer('metadata_id');
+            $table->integer('total')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -28,6 +29,6 @@ class CreateUsersRoles extends Migration
      */
     public function down()
     {
-        Schema::drop('users_roles');
+        Schema::drop('rack_location');
     }
 }

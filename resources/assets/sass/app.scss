@@ -13,7 +13,6 @@
 
 .fixbutton-height{height:34px !important;}
 
-
 /*
  * Paddings, margins and spaces
  */
@@ -44,4 +43,12 @@ label.legend {
     letter-spacing: 1px;
     width:100%;
     clear:both;
+}
+
+hr.divider {
+    clear: both;
+}
+
+.inventory-span-width{
+    min-width: 90px !important;
 }

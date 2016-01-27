@@ -5,6 +5,13 @@
   - Orden de compra (Ingreso manual)
 @stop
 
+@section("styles")
+@parent
+    <link rel="stylesheet" type="text/css" href="/css/selectize.bootstrap3.css">
+
+
+@stop
+
 @section('content')
 
     <div id="page-wrapper" style="min-height: 497px;">
@@ -125,9 +132,11 @@
                                             <input id="qty" type="number" placeholder="Cantidad" class="form-control input-md" v-model="qty" value="1">
                                         </div>
 
+                                        <!-- searchbox -->
                                         <label class="col-md-12 control-label">Articulo</label>
+
                                         <div class="col-md-12 margin-bottom">
-                                            <input id="model" type="text" placeholder="Modelo" class="form-control input-md" v-model="model">
+                                            <select id="select-products" placeholder="Selecciona un articulo..." v-model="model"></select>
                                         </div>
 
                                         <label class="col-md-12 control-label">Descripcion</label>
@@ -166,5 +175,6 @@
     <script>
         var user_id = {{Auth::user()->id}}
     </script>
+    <script src="/js/selectize.min.js"></script>
     <script src="/js/orders.js"></script>
 @stop

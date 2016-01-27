@@ -19,12 +19,12 @@
 
     @section("styles")
 
-      <!-- App CSS -->
-      <link rel="stylesheet" type="text/css" href="/css/app.css">
-      <link rel="stylesheet" type="text/css" href="/css/metisMenu.min.css">
-      <link rel="stylesheet" type="text/css" href="/css/pnotify.css" media="all" />
-      <link rel="stylesheet" type="text/css" href="/css/pnotify.buttons.css" media="all" />
-      <link rel="stylesheet" type="text/css" href="/css/animate.min.css" media="all" />
+    <!-- App CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+    <link rel="stylesheet" type="text/css" href="/css/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pnotify.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/css/pnotify.buttons.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/css/animate.min.css" media="all" />
 
 
     <!-- open sans font -->
@@ -311,10 +311,13 @@
                                 <a href="#"><i class="fa fa-edit fa-fw"></i>Inventario<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="panels-wells.html">Egresar productos</a>
+                                        <a href="/inventario/egresar">Egresar productos</a>
                                     </li>
                                     <li>
-                                        <a href="buttons.html">Status</a>
+                                        <a href="/inventario/ingresar">Ingresar productos</a>
+                                    </li>
+                                    <li>
+                                        <a href="/inventario/reportes">Reportes</a>
                                     </li>
                                 </ul>
                             </li>

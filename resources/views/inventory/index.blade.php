@@ -52,7 +52,6 @@
                                             <th>Articulo</th>
                                             <th>Unidad</th>
                                             <th>Modelo</th>
-                                            <th>qty</th>
                                             <th>Descripcion</th>
                                             <th>Activado</th>
                                         </tr>
@@ -64,7 +63,6 @@
                                                 <td><button type="button" class="btn btn-link button-edit" data-toggle="modal" data-target="#modal-AddProducts">{{$product->name}}</button></td>
                                                 <td>{{$product->unit}}</td>
                                                 <td>{{$product->model}}</td>
-                                                <td><button class="btn btn-link">aa</button></td>
                                                 <td>{{$product->description}}</td>
                                                 <td>{{$product->active}}</td>
                                             </tr>
@@ -162,6 +160,6 @@
 @stop
 @section("scripts")
     @parent
-    <script src="/js/products.js"></script>
+    <script src="/js/inventory.js"></script>
 
 @stop
