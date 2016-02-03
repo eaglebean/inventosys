@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Metadata;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Response;
@@ -16,7 +17,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $data = ['products' => Products::all()];
+        $data = [
+            'products' => Products::all(),
+        ];
         return view('products.index', $data);
     }
 
@@ -27,7 +30,36 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        // Get color metadata
+        $colors = Metadata::where('active', true)
+            ->where('metadata_group_id', 8)
+            ->orderBy('label', 'asc')
+            ->get();
+
+        // Get size metadata
+        $sizes = Metadata::where('active', true)
+            ->where('metadata_group_id', 9)
+            ->orderBy('label', 'asc')
+            ->get();
+
+        $footweartypes = Metadata::where('active', true)
+            ->where('metadata_group_id', 10)
+            ->orderBy('label', 'asc')
+            ->get();
+
+        $units = Metadata::where('active', true)
+            ->where('metadata_group_id', 11)
+            ->orderBy('label', 'asc')
+            ->get();
+
+        $data = [
+            'colors' => $colors,
+            'sizes' => $sizes,
+            'footweartypes' => $footweartypes,
+            'units' => $units,
+        ];
+
+        return view('products.add', $data);
     }
 
     /**

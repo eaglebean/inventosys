@@ -25,10 +25,10 @@ class InventoryController extends Controller
     public function create()
     {
         $data = [
-            'warehouses' => Warehouse::all();
+            'warehouses' => Warehouse::all(),
         ];
 
-        return view('inventory.enter');
+        return view('inventory.enter', $data);
     }
 
     /**

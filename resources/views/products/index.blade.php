@@ -49,24 +49,24 @@
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox" id="checkall"></th>
-                                            <th>Articulo</th>
-                                            <th>Unidad</th>
-                                            <th>Modelo</th>
-                                            <th>qty</th>
-                                            <th>Descripcion</th>
-                                            <th>Activado</th>
+                                            <th>Codigo (Contpaq)</th>
+                                            <th>Estilo (Nombre)</th>
+                                            <th>Tipo Calzado</th>
+                                            <th>Color</th>
+                                            <th>Talla</th>
+                                            <th>Tipo Unidad</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($products as $product )
                                             <tr data-id="{{$product->id}}">
                                                 <td><input type="checkbox" class="checkbox-selection"></td>
-                                                <td><button type="button" class="btn btn-link button-edit" data-toggle="modal" data-target="#modal-AddProducts">{{$product->name}}</button></td>
-                                                <td>{{$product->unit}}</td>
-                                                <td>{{$product->model}}</td>
-                                                <td><button class="btn btn-link">aa</button></td>
-                                                <td>{{$product->description}}</td>
-                                                <td>{{$product->active}}</td>
+                                                <td>{{$product->contpaq_id}}</td>
+                                                <td><button type="button" class="btn btn-link button-edit" data-toggle="modal" data-target="#modal-AddProducts">{{$product->style}}</button></td>
+                                                <td>{{$product->footwear_type_id}}</td>
+                                                <td>{{$product->color_id}}</td>
+                                                <td>{{$product->size_id}}</td>
+                                                <td>{{$product->unit_id}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -94,69 +94,6 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
-
-    <!-- TEMPLATES -->
-
-    <!-- Modal -->
-    <div id="products_app">
-
-        <div class="modal fade" id="modal-AddProducts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">@{{modalTitle}}</h4>
-              </div>
-              <div class="modal-body">
-
-
-                <div class="form-group">
-
-                    <div class="form-group " v-bind:class="{'has-error':isName}">
-                        <label class="col-md-12 control-label">Nombre del producto</label>
-                        <div class="col-md-12 margin-bottom">
-                            <input id="prodcut_name" type="text" class="form-control" v-model="product.name">
-                            <span id="helpBlock2" class="help-block" v-if="isName">Este campo es requerido!</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group " v-bind:class="{'has-error':isModel}">
-                        <label class="col-md-12 control-label">Modelo</label>
-                        <div class="col-md-12 margin-bottom">
-                            <input type="text" class="form-control" v-model="product.model">
-                            <span id="helpBlock2" class="help-block" v-if="isModel">Este campo es requerido!</span>
-                        </div>
-                    </div>
-
-                    <label class="col-md-12 control-label">Unidad</label>
-                    <div class="col-md-12 margin-bottom">
-                        <input type="text" class="form-control" v-model="product.unit">
-                    </div>
-
-                    <label class="col-md-12 control-label">Descripcion</label>
-                    <div class="col-md-12 margin-bottom">
-                        <textarea class="form-control"  v-model="product.description"></textarea>
-                    </div>
-
-                    <div class="col-md-12 margin-bottom">
-                        <input type="checkbox" v-model="product.active" >
-                        <label class="control-label">Activado</label>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @click="saveAction" :disabled="isName || isModel">Guardar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <pre>@{{$data | json}}</pre>
-
-    </div>
-    <!-- TEMPLATES -->
 
 
 @stop

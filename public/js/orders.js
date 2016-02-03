@@ -16,8 +16,7 @@ $( document ).ready(function() {
         searchField: 'model',
         render: {
             option: function(item, escape) {
-                
-                return '<div data-name="' + item.name + '" data-model="' + item.model + '>' +
+                return  '<div>' +
                         '<span class="label">' + escape(item.name) + '</span>' +
                         (item.model ? '<span class="caption">' + escape(item.model) + '</span>' : '') +
                         '</div>';
@@ -38,9 +37,11 @@ $( document ).ready(function() {
             });
         },
         onChange:function(value) {
-            $.each(this.options, function( index, item ) {
-              if(item.id == value) 
-                Order.product = item;
+            $.each(this.options, function( index, product ) {
+                if(product.id == value){ 
+                    Order.product = product;
+                    console.log(product)
+                }
             });
         }
        

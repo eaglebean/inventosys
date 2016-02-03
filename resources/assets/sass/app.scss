@@ -52,3 +52,14 @@ hr.divider {
 .inventory-span-width{
     min-width: 90px !important;
 }
+
+selectize-dropdown .caption {
+    font-size: 12px; 
+    display: block;
+    opacity: 0.5;
+}
+
+selectize-dropdown .label {
+    font-size: 12px; 
+    display: block;
+}

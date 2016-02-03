@@ -291,7 +291,15 @@
 
                             </li>
                             <li>
-                                <a href="/productos"><i class="fa fa-table fa-fw"></i> Productos</a>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Productos<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/productos/agregar">Agregar</a>
+                                    </li>
+                                    <li>
+                                        <a href="/productos">Listado</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Ordenes<span class="fa arrow"></span></a>

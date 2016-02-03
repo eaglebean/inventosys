@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Metadata;
 use App\Models\MetadataGroup;
 use Illuminate\Database\Seeder;
 
@@ -41,10 +41,106 @@ class MetadataGroupTableSeeder extends Seeder
                 'label' => 'Recurso',
                 'description' => 'Metadatos para definir recursos. Por ejemplo: Crear, Borrar, Leer, Buscar, etc',
             ],
+
+            [
+                'label' => 'Color',
+                'description' => 'Colores disponibles para productos',
+                'childs' => [
+                    [
+                        'label' => 'Blanco',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Cafe',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Negro',
+                        'description' => '',
+                    ],
+                ],
+            ],
+
+            [
+                'label' => 'Talla',
+                'description' => 'Tallas disponibles para productos',
+                'childs' => [
+                    [
+                        'label' => '24.0',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => '25.0',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => '26.0',
+                        'description' => '',
+                    ],
+
+                ],
+            ],
+            [
+                'label' => 'Tipo de calzado',
+                'description' => 'Prefijo para producto',
+                'childs' => [
+                    [
+                        'label' => 'SD',
+                        'description' => 'Sandalia Dama',
+                    ],
+                    [
+                        'label' => 'SC',
+                        'description' => 'Sandalia Caballero',
+                    ],
+                    [
+                        'label' => 'SN',
+                        'description' => 'Sandalia Nino',
+                    ],
+
+                ],
+            ],
+
+            [
+                'label' => 'Tipo unidad',
+                'description' => 'Prefijo para producto',
+                'childs' => [
+                    [
+                        'label' => 'PAR',
+                        'description' => 'Par de calzado',
+                    ],
+                    [
+                        'label' => 'PZ',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Singular',
+                        'description' => '',
+                    ],
+
+                ],
+            ],
         ];
+        $childs = [];
 
         foreach ($seeds as $seed) {
-            MetadataGroup::create($seed);
+            //  Get childs if any
+            if (array_key_exists('childs', $seed)) {
+                foreach ($seed['childs'] as $child) {
+                    $childs[] = new Metadata($child);
+                }
+                unset($seed['childs']);
+            }
+
+            //  Create parent and childs
+            $parent = MetadataGroup::create($seed);
+
+            if (count($childs) > 0) {
+                $parent->childs()->saveMany($childs);
+
+                //  Clean array
+                $childs = [];
+            }
+
         }
     }
 }

@@ -13,8 +13,12 @@ $( document ).ready(function() {
             modalTitle:'Agregar Productos',
             selected_boxes:[],
 
+            color:['a','b'],
+            size:[],
+            footweartype:[],
+
             product:{
-                name:null,
+                style:null,
                 unit:null,
                 model:null,
                 description:null,
@@ -22,6 +26,8 @@ $( document ).ready(function() {
             }
         
         },
+
+
         
         /*
         |--------------------------------------------------------------------------
@@ -56,12 +62,12 @@ $( document ).ready(function() {
             },
 
             resetData:function (){
-                this.product.name = '';
+                this.product.style = '';
                 this.product.model = '';
                 this.product.unit = '';
                 this.product.description = '';
                 this.product.active = true;
-                $('#prodcut_name').focus();
+                $('#prodcut_style').focus();
             },
 
             /* 
@@ -144,17 +150,17 @@ $( document ).ready(function() {
         |--------------------------------------------------------------------------
         */
         computed: {
-            isName: function() {
-                return (!this.product.name);
+            isStyle: function() {
+                return (!this.product.style);
             },
 
             isModel: function() {
                 return (!this.product.model);
             }
+        },
+        ready:function(){
+            // 
         }
-        // ready:function(){
-           
-        // }
     });
     
     // Set modal title

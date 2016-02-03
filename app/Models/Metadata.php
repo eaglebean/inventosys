@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class Metadata extends Model
 {
     protected $table = 'metadata';
     protected $fillable = ['metadata_group_id', 'label', 'description', 'active'];
