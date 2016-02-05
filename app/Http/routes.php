@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Products
     Route::get('productos', 'ProductsController@index');
     Route::get('productos/agregar', 'ProductsController@create');
+    Route::get('productos/importar', 'ProductsController@import');
+
     Route::post('productos', 'ProductsController@store');
     Route::post('productos/{id}', 'ProductsController@update');
     Route::get('productos/{id}', 'ProductsController@show');

@@ -297,6 +297,9 @@
                                         <a href="/productos/agregar">Agregar</a>
                                     </li>
                                     <li>
+                                        <a href="/productos/importar">Importar</a>
+                                    </li>
+                                    <li>
                                         <a href="/productos">Listado</a>
                                     </li>
                                 </ul>

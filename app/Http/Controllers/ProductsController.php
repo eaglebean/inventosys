@@ -63,6 +63,16 @@ class ProductsController extends Controller
     }
 
     /**
+     * Show the form to import new resources.
+     *
+     * @return Response
+     */
+    public function import()
+    {
+        return view('products.import');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
