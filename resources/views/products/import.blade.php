@@ -28,8 +28,7 @@
                                 <!-- <div class="form-group"> -->
                                 <div class="alert alert-info" role="alert">
                                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                    Columnas permitidas: contpaq_id, codigo_barras, estilo, tipo_calzado_id, unidad_id, descripcion, color_id, talla_id, qty_contenedor
-
+                                    Columnas permitidas: contpaq_id, barcode, style, footwear_type_id, unit_id, description, color_id, size_id, qty_container, active
                                 </div>
                                     <textarea
                                         id="productscsv"
@@ -45,7 +44,7 @@
                         </div>
 
                         <div class="clearfix"></div>
-                        <button type="button" class="btn btn-primary pull-right" @click="importar" :disabled="!allowImport">Importar</button>
+                        <button type="button" class="btn btn-primary pull-right" @click="importdata" :disabled="!allowImport">Importar</button>
 
                         <pre>@{{$data | json}}</pre>
                     </div>

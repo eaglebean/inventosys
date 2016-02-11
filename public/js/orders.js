@@ -12,17 +12,36 @@ $( document ).ready(function() {
     $('#select-products').selectize({
         maxOptions: 5,
         valueField: 'id',
-        labelField: 'model',
-        searchField: 'model',
+        labelField: 'style',
+        searchField: 'style',
         render: {
             option: function(item, escape) {
-                return  '<div>' +
-                        '<span class="label">' + escape(item.name) + '</span>' +
-                        (item.model ? '<span class="caption">' + escape(item.model) + '</span>' : '') +
+                return  '<div class="selectize-row">' +
+                        '<span class="selectize-label">' + escape(item.style) + '</span>' +
+                        '<table class="table selectize-table">' +
+                            '<thead>' +
+                                '<tr>' +
+                                    '<td>Tipo Calzado</td>' +
+                                    '<td>Color</td>' +
+                                    '<td>Talla</td>' +
+                                '</tr>' +
+                            '</thead>' +
+                            '<tbody>' +
+                                '<tr>' +
+                                    '<td>' + escape(item.footweartype) +'</td>' +
+                                    '<td>'+escape(item.color)+'</td>' +
+                                    '<td>'+escape(item.size)+'</td>' +
+                                '</tr>' +
+                            '</tbody>' +
+                        '</table>' +
+                        // '<span class="selectize-caption">' + escape(item.footweartype) + '</span>'+
+                        // '<span class="selectize-caption">' + escape(item.color) + '</span>'+
+                        // '<span class="selectize-caption">' + escape(item.size) + '</span>'+
                         '</div>';
             }
         },
         load: function(query, callback) {
+            
             if (!query.length) return callback();
             $.ajax({
                 url: '/productos/buscar/' + encodeURIComponent(query),
@@ -35,15 +54,15 @@ $( document ).ready(function() {
                     callback(res);
                 }
             });
-        },
-        onChange:function(value) {
-            $.each(this.options, function( index, product ) {
-                if(product.id == value){ 
-                    Order.product = product;
-                    console.log(product)
-                }
-            });
         }
+        // onChange:function(value) {
+        //     $.each(this.options, function( index, product ) {
+        //         if(product.id == value){ 
+        //             Order.product = product;
+        //             console.log(product)
+        //         }
+        //     });
+        // }
        
     });
 

@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('barcode');
 
             // Info
-            $table->integer('footwear_type_id'); // Tipo de calzado
+            $table->integer('footwear_type_id')->default(null); // Tipo de calzado
             $table->string('style');
             $table->text('description');
 
@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->integer('color_id');
             $table->integer('size_id');
             $table->integer('qty_container');
-            $table->string('unit_id');
+            $table->integer('unit_id');
             $table->boolean('active')->default(true);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

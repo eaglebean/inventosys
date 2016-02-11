@@ -80,12 +80,21 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $product_array = $request->input('product', []);
+        $products = $request->input('products', []);
+        $cont = 1;
+        $status = true;
 
-        if ($product_array) {
-            Products::create($product_array);
-            $status = true;
-            $message = "El producto fue creado con exito!";
+        if ($products) {
+            foreach ($products as $product) {
+                if (Products::create($product)) {
+                    $message = ($cont > 1) ? "$cont productos fueron creados con exito!" : "El producto fue creado con exito";
+                } else {
+                    $status = false;
+                    $message = "Error al intentar crear el producto: " . $product["style"];
+                    break;
+                }
+                $cont++;
+            }
         } else {
             $status = false;
             $message = "Datos insuficientes para crear el producto";
@@ -118,8 +127,15 @@ class ProductsController extends Controller
      */
     public function search($keyword)
     {
-        $product = Products::where("model", "LIKE", "%{$keyword}%")->get();
-        return Response::json($product);
+        $products = Products::where("style", "LIKE", "%{$keyword}%")->get();
+
+        foreach ($products as $product) {
+            $product->footweartype = $product->getFootweartype();
+            $product->color = $product->getColor();
+            $product->size = $product->getSize();
+            $product->unit = $product->getUnit();
+        }
+        return Response::json($products);
     }
 
     /**

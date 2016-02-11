@@ -1,22 +1,23 @@
-/** 
+/**
  * Products scripts
  */
 $( document ).ready(function() {
 
-    var vueProduct = new Vue({
+    var vueImport = new Vue({
         el:'#products_app',
         data:{
             rawlist:null,
             header:[
                 "contpaq_id",
-                "codigo_barras",
-                "estilo",
-                "tipo_calzado_id",
-                "unidad_id",
-                "descripcion",
+                "barcode",
+                "style",
+                "footwear_type_id",
+                "unit_id",
+                "description",
                 "color_id",
-                "talla_id",
-                "qty_contenedor"
+                "size_id",
+                "qty_container",
+                "active"
             ],
             products:[]
         },
@@ -27,18 +28,18 @@ $( document ).ready(function() {
         |--------------------------------------------------------------------------
         */
         methods:{
-            formatCSV:function (){
+            formatData:function (){
                 var arrayOfLines = this.rawlist.split('\n');
-                
+
                 var header_validation = true;
                 var data_validation = true;
                 var index_failed = null;
                 var index_data_failed = null;
-                
+
                 var allowed_headers = this.header; // Allowed header
                 var products = this.products; // Global
                 var header = arrayOfLines[0].split(','); // Header passed
-                
+
                 $.each(header, function(index, item) {
                    if ($.inArray(item.trim(), allowed_headers ) === -1 ){
                     header_validation = false;
@@ -54,9 +55,9 @@ $( document ).ready(function() {
 
                     $.each(arrayOfLines, function(index, item) {
 
-                        // Skip data (lines) if it is empty 
+                        // Skip data (lines) if it is empty
                         if(item.length > 0) {
-                            
+
                             product = item.split(',');
 
                             // Check product length and header length match
@@ -81,40 +82,39 @@ $( document ).ready(function() {
 
                     // Check data validation
                     if(data_validation) {
+                        return true;
                         console.log('PASSED');
                     } else {
                         bootbox.alert('La fila ' + arrayOfLines[index_data_failed] + ' no tiene la misma cantidad de columnas que el encabezado!')
                     }
 
                 } else {
-                    bootbox.alert('La columna <strong>' + header[index_failed] + '</strong> no es permitida! Asegurate que todas las columnas que estas pasado sean permitidas.')
+                    bootbox.alert('La columna <strong>' + header[index_failed] + '</strong> no es permitida! Asegurate que todas las columnas que estas pasado sean permitidas.');
                 }
-         
+
             },
 
-            importar:function(){
-                console.log('IMPORTANDO....')
-                this.formatCSV();
+            importdata:function(){
+                if(this.formatData()) {
+                    data = {'products':this.products};
+                    this.$http.post('/productos', data).then(function(response){
+                        if (response.data.status == true){
+                            Splash.show('success', 'Excelente!', response.data.message);
+                            vueImport.resetData();
+                        } else {
+                            Splash.show('error', 'Ups!', response.data.message);
+                        }
+                    });
+
+                }
+                
             },
 
-            /**
-             * API calls
-             */
-            createProduct:function(){
-                data = {'product':this.product};
-
-                this.$http.post('/productos', data).then(function(response){
-                    if (response.data.status == true){
-                        Splash.show('success', 'Excelente!', response.data.message);
-                        vueProduct.resetData();
-                    } else {
-                        Splash.show('error', 'Ups!', response.data.message);
-                    }
-                });
+            resetData:function (){
+                this.rawlist = null;
+                this.products = [];
             },
 
-
-            
         },
 
         /*
@@ -126,11 +126,8 @@ $( document ).ready(function() {
             allowImport: function() {
                 return (this.rawlist !== null && (this.rawlist.trim().length > 0));
             }
-        },
-        ready:function(){
-            // 
         }
     });
-    
+
 
 });

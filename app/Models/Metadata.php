@@ -13,4 +13,8 @@ class Metadata extends Model
     {
         return $this->belongsTo('App\Models\MetadataGroup', 'id', 'metatada_group_id');
     }
+    public static function getLabel($id)
+    {
+        return ($metadata = Metadata::find($id)) ? $metadata->label : "no declarado";
+    }
 }

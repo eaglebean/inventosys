@@ -55,7 +55,7 @@ $( document ).ready(function() {
              * API calls
              */
             createProduct:function(){
-                data = {'product':this.product};
+                data = {'products':[this.product]};
 
                 this.$http.post('/productos', data).then(function(response){
                     if (response.data.status == true){

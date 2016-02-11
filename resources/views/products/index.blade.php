@@ -63,10 +63,10 @@
                                                 <td><input type="checkbox" class="checkbox-selection"></td>
                                                 <td>{{$product->contpaq_id}}</td>
                                                 <td><button type="button" class="btn btn-link button-edit" data-toggle="modal" data-target="#modal-AddProducts">{{$product->style}}</button></td>
-                                                <td>{{$product->footwear_type_id}}</td>
-                                                <td>{{$product->color_id}}</td>
-                                                <td>{{$product->size_id}}</td>
-                                                <td>{{$product->unit_id}}</td>
+                                                <td>{{$product->getFootweartype()}}</td>
+                                                <td>{{$product->getColor()}}</td>
+                                                <td>{{$product->getSize()}}</td>
+                                                <td>{{$product->getUnit()}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
