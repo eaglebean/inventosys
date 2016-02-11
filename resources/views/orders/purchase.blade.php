@@ -5,91 +5,160 @@
   - Orden de compra (Ingreso manual)
 @stop
 
+@section("styles")
+@parent
+    <link rel="stylesheet" type="text/css" href="/css/selectize.bootstrap3.css">
+
+
+@stop
+
 @section('content')
 
     <div id="page-wrapper" style="min-height: 497px;">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" id="purchase_app" >
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ordenes de compra</h1>
-
-
+                    <h1 class="page-header">Orden de compra</h1>
 
                     <div class="panel panel-default">
 
-                        <!-- panel-heading -->
                         <div class="panel-heading">
+                            <!-- **************************************************************** -->
+                            <!-- CHECK THE BEST WAY TO PASS USER INFO TO VIEWS!!!!  -->
+                            <!-- **************************************************************** -->
+                            <strong>Informacion de la orden</strong>
+                        </div>
 
-                            <!-- toolbar -->
-                            <div class="input-group">
-                                <input type="text" class="form-control" aria-label="Search" placeholder="Search...">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" id="action_user_create"><i class="fa fa-plus insert-icon"> </i> Create User</a></li>
-                                        <li><a href="#" id="action_user_import"><i class="fa fa-file-o"> </i> Import Users</a></li>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group form-horizontal">
+                                    <label class="col-md-2 control-label" for="order_serie">Serie</label>
+                                    <div class="col-md-10 margin-bottom">
+                                        <input id="order_serie" name="order_serie" type="text" placeholder="Numero de serie" class="form-control input-md" v-model="order.serie">
+                                    </div>
 
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#" id="action_user_delete"><i class="fa fa-trash delete-icon"> </i> Delete </a></li>
-                                    </ul>
+                                    <label class="col-md-2 control-label" for="order_folio">Folio</label>
+                                    <div class="col-md-10 margin-bottom">
+                                        <input id="order_folio" name="order_folio" type="text" placeholder="Numero de folio" class="form-control input-md" v-model="order.folio">
+                                    </div>
+
+                                    <label class="col-md-2 control-label" for="order_making">Numero de factura</label>
+                                    <div class="col-md-10 margin-bottom">
+                                        <input id="order_making" type="text" placeholder="Numero de factura" class="form-control input-md" v-model="order.making">
+                                    </div>
+
+                                    <label class="col-md-2 control-label" for="description">Descripcion</label>
+                                    <div class="col-md-10 margin-bottom">
+                                        <textarea id="description" name="description"  placeholder="Introduce una breve descripcion" class="form-control input-md" v-model="order.description"> </textarea>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- /.toolbar -->
-
                         </div>
-                        <!-- /.panel-heading -->
 
-                        <!-- panel-body -->
-                        <div class="panel-body">
-
-                            <!-- table -->
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th><input type="checkbox" id="checkall"></th>
-                                            <th>Numero</th>
-                                            <th>Descripcion</th>
-                                            <th>Usuario</th>
-                                            <th>Creada</th>
-                                            <th>Actualizada</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($orders as $order )
-                                            <tr>
-                                                <td><input type="checkbox" id="user_id"></td>
-                                                <td>{{$order->number}}</td>
-                                                <td>{{$order->description}}</td>
-                                                <td>{{$order->user->name}}</td>
-                                                <td>{{$order->created_at}}</td>
-                                                <td>{{$order->updated_at}}</td>
-
-
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table -->
-
-                            <!-- pagination -->
-
-                            <!-- ./pagination -->
-                        </div>
-                        <!-- /.panel-body -->
                     </div>
 
+                    <div class="panel panel-default">
 
+                        <div class="panel-heading clearfix ">
+                            <strong class="pull-left">Lista de articulos</strong>
+                            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#add-articles-modal" :disabled="allowAddArticles"><i class="fa fa-plus-circle"></i> Agregar Articulos</button>
+                        </div>
 
+                        <div class="panel-body">
 
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Cantidad</th>
+                                                <th>Modelo</th>
+                                                <th>Descripcion</th>
+                                                <th>Usuario</th>
+                                                <th>...</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(key, item) in items">
+                                                <td>
 
+                                                    <input name="item_qty" type="number" class="form-control input-md" v-model="item.qty">
 
+                                                </td>
+                                                <td>
+                                                    <input id="model" type="text" placeholder="Modelo" class="form-control input-md" v-model="item.model">
+                                                </td>
+                                                <td>
+                                                    <input name="item_descirption" type="text" class="form-control input-md" v-model="item.description">
+                                                </td>
+
+                                                <td>
+                                                    @{{item.user_id}}
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-default" @click="deleteItem(key)"><i class="fa fa-trash-o"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+
+                    <button type="button" class="btn btn-primary pull-right" :disabled="errors" @click="createOrder"><i class="fa fa-floppy-o"></i> Guardar</button>
                 </div>
                 <!-- /.col-lg-12 -->
 
+                <!-- modals -->
+                <div class="modal fade" id="add-articles-modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Agregar Articulos</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <div id="template-add-items" class="row" >
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 control-label">Cantidad</label>
+                                        <div class="col-md-12 margin-bottom">
+                                            <input id="qty" type="number" placeholder="Cantidad" class="form-control input-md" v-model="qty" value="1">
+                                        </div>
+
+                                        <!-- searchbox -->
+                                        <label class="col-md-12 control-label">Articulo</label>
+
+                                        <div class="col-md-12 margin-bottom">
+                                            <select id="select-products" placeholder="Selecciona un articulo..." v-model="model"></select>
+                                        </div>
+
+                                        <label class="col-md-12 control-label">Descripcion</label>
+                                        <div class="col-md-12 margin-bottom">
+                                            <textarea id="description" type="text" placeholder="Descripcion" class="form-control input-md" v-model="description"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" @click="addItems" :disabled="errors">Agregar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- modals -->
+
+                    <pre>@{{$data | json}}</pre>
             </div>
             <!-- /.row -->
 
@@ -98,8 +167,14 @@
     </div>
     <!-- /#page-wrapper -->
 
+
+
 @stop
 @section("scripts")
     @parent
+    <script>
+        var user_id = {{Auth::user()->id}}
+    </script>
+    <script src="/js/selectize.min.js"></script>
     <script src="/js/orders.js"></script>
 @stop

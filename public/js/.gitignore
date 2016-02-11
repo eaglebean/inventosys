@@ -4,3 +4,9 @@
 # But not these files...
 !.gitignore
 !users.js
+!orders.js
+!app.js
+!products*
+!inventory.js
+
+

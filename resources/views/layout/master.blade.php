@@ -8,7 +8,7 @@
     <meta name="author" content="Softlan - Mazamitla 1.0">
 
     <!-- token has been disabled because it cause token mistmatch error when API is call externally (POST). app/Http/kernel.php -->
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta id="token" name="token" value="{{ csrf_token() }}" >
 
     <title>
       @section('title')
@@ -19,9 +19,12 @@
 
     @section("styles")
 
-      <!-- App CSS -->
-      <link rel="stylesheet" type="text/css" href="/css/app.css">
-      <link rel="stylesheet" type="text/css" href="/css/metisMenu.min.css">
+    <!-- App CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+    <link rel="stylesheet" type="text/css" href="/css/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pnotify.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/css/pnotify.buttons.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/css/animate.min.css" media="all" />
 
 
     <!-- open sans font -->
@@ -284,11 +287,22 @@
                                 <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="/usuarios"><i class="fa fa-users fa-fw"></i> Users</a>
+                                <a href="/usuarios"><i class="fa fa-users fa-fw"></i> Usuarios</a>
 
                             </li>
                             <li>
-                                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Productos<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/productos/agregar">Agregar</a>
+                                    </li>
+                                    <li>
+                                        <a href="/productos/importar">Importar</a>
+                                    </li>
+                                    <li>
+                                        <a href="/productos">Listado</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Ordenes<span class="fa arrow"></span></a>
@@ -299,16 +313,22 @@
                                     <li>
                                         <a href="/ordenes/ventas">Ventas</a>
                                     </li>
+                                    <li>
+                                        <a href="/ordenes">Lista</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i>Inventario<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="panels-wells.html">Egresar productos</a>
+                                        <a href="/inventario/egresar">Egresar productos</a>
                                     </li>
                                     <li>
-                                        <a href="buttons.html">Status</a>
+                                        <a href="/inventario/ingresar">Ingresar productos</a>
+                                    </li>
+                                    <li>
+                                        <a href="/inventario/reportes">Reportes</a>
                                     </li>
                                 </ul>
                             </li>
@@ -399,6 +419,14 @@
       <!-- Bootstrap Core JavaScript -->
       <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
+      <!-- pnotify -->
+      <script src="/js/pnotify.js"></script>
+      <script src="/js/pnotify.buttons.js"></script>
+      <script src="/js/pnotify.animate.js"></script>
+
+
+
+
       <!-- Metis Menu Plugin JavaScript -->
       <script src="/js/metisMenu.min.js"></script>
 
@@ -407,6 +435,13 @@
 
       <!-- bootbox -->
       <script src="/js/bootbox.js"></script>
+
+      <!-- vue -->
+      <script src="/js/vue.js"></script>
+      <script src="/js/vue-resource.min.js"></script>
+
+      <script src="/js/app.js"></script>
+
     @show
 
   </body>
