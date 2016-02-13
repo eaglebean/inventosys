@@ -12,7 +12,9 @@ install server dependencies:
 https://getcomposer.org/doc/00-intro.md
 
 # upgrade mysql from 5.5 to 5.6
-
+$ sudo apt-get remove mysql-server
+$ sudo apt-get install mysql-client-5.6 mysql-client-core-5.6
+$ sudo apt-get install mysql-server-5.6
 ```
 
 
