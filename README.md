@@ -106,8 +106,18 @@ Table migration
 ```bash
 $ php artisan migrate:install
 $ php artisan migrate
+
+# seed db
+$ php artisan db:seed
 ```
 
+
+Create user
+```shell
+$ php artisan tinker
+Psy Shell v0.6.1 (PHP 5.5.9-1ubuntu4.14 — cli) by Justin Hileman
+>>> App\Models\User::create(['name'=>'Oscar Romero', 'email'=>'osroflo@gmail.com', 'password'=>Hash::make('helloworld')])
+```
 
 
 
