@@ -1,12 +1,36 @@
 # inventosys - mazamitla
 
-Como installar
+### System Requirements
+Server:
+- Composer
+- PHP >= 5.5
+- MySQL >= 5.6
 
-1 - git clone https://github.com/eaglebean/inventosys
+Frontend:
+- nodejs/npm
+- gulp
+- bower
+```
 
-2 - composer install
+```
 
-3 - bower install
+
+How to Install Inventosys
+
+1 - Change directory where you want to install
+```cd /var/www/```
+
+2 - Clone repo
+```git clone https://github.com/eaglebean/inventosys```
+
+3 - Install PHP dependencies
+```
+cd inventosys
+composer install
+```
+
+4 -
+bower install
 
 4 - sudo npm install
 
@@ -24,7 +48,7 @@ Crear Base de datos
 
 
 
-Configurar 
+Configurar
 
 1 - cp .env.eaxmple .env
 
