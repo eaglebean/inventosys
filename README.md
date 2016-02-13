@@ -114,3 +114,13 @@ Grant writting privileges
 ```
  sudo chmod a+w -R storage/logs
 ```
+
+
+Setup your virtual host
+```
+# download the virtual host stup script 
+# this script only works in debian distros using apache http server
+https://github.com/osroflo/preferences/blob/master/scripts/setup_vh.py
+
+sudo setup_vh.py /var/www/inventosys/public softtlan.inventosys.net 
+```
