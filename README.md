@@ -1,34 +1,94 @@
 # inventosys - mazamitla
 
-Como installar
+### System Requirements
+Server:
+- Composer
+- PHP >= 5.5
+- MySQL >= 5.6
 
-1 - git clone https://github.com/eaglebean/inventosys
+install server dependencies:
+```shell
+# install composer
+https://getcomposer.org/doc/00-intro.md
 
-2 - composer install
-
-3 - bower install
-
-4 - sudo npm install
-
-5 - gulp
-
-
-
-Crear Base de datos
-
-1 - mysql -uroot -p
-
-2 -create database inventosys
+# upgrade mysql from 5.5 to 5.6
+$ sudo apt-get remove mysql-server
+$ sudo apt-get install mysql-client-5.6 mysql-client-core-5.6
+$ sudo apt-get install mysql-server-5.6
+```
 
 
 
+Frontend:
+- nodejs/npm
+- gulp
+- bower
+
+install front end dependencies:
+
+```shell
+########################################
+# Install nodejs/npm
+########################################
+$ sudo apt-get update
+$ sudo apt-get install nodejs
+$ sudo apt-get install npm
+
+# check if nodejs is running
+$ node --version
+v0.10.25
+
+# if you get the error: /usr/sbin/node: No such file or directory then create a symlink
+$ sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 
-Configurar 
 
-1 - cp .env.eaxmple .env
+########################################
+# Install bower and gulp
+########################################
+$ npm install -g bower
+$ npm install -g gulp
 
-2 - Ajustar valores
+```
+
+
+### How to Install Inventosys
+
+1 - Change directory where you want to install
+```cd /var/www/```
+
+2 - Clone repo
+```git clone https://github.com/eaglebean/inventosys```
+
+3 - Install server dependencies
+```
+cd inventosys
+composer install
+```
+
+4 - Install frontend dependencies
+```bash
+$ sudo npm install
+$ bower install
+$ gulp
+```
+
+
+5 - Create DB
+```sql
+CREATE DATABASE inventosys
+```
+
+
+
+Setup
+Create your env file
+```bash
+# /var/www/inventosys
+$ cp .env.eaxmple .env
+```
+
+Update DB settings and APP_KEY
 ```
 APP_ENV=local
 APP_DEBUG=true
@@ -42,20 +102,37 @@ DB_PASSWORD=<tu password>
 ```
 
 
+Table migration
+```bash
+$ php artisan migrate:install
+$ php artisan migrate
+
+# seed db
+$ php artisan db:seed
+```
+
+
+Create user
+```shell
+$ php artisan tinker
+Psy Shell v0.6.1 (PHP 5.5.9-1ubuntu4.14 — cli) by Justin Hileman
+>>> App\Models\User::create(['name'=>'Oscar Romero', 'email'=>'osroflo@gmail.com', 'password'=>Hash::make('helloworld')])
+```
 
 
 
+Grant writting privileges
 
-Migrar tablas
-
-1 - php artisan migrate:install
-
-2 - php artisan migrate
-
+```
+ sudo chmod a+w -R storage/logs
+```
 
 
+Setup your virtual host
+```
+# download the virtual host stup script 
+# this script only works in debian distros using apache http server
+https://github.com/osroflo/preferences/blob/master/scripts/setup_vh.py
 
-
-Dar privilegios de lectura/escritura
-
-1 - sudo chmod 777 -R storage/logs
+sudo setup_vh.py /var/www/inventosys/public softtlan.inventosys.net 
+```
