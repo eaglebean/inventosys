@@ -17,29 +17,28 @@ $( document ).ready(function() {
         render: {
             option: function(item, escape) {
                 return  '<div class="selectize-row">' +
-                        '<span class="selectize-label">' + escape(item.style) + '</span>' +
-                        '<table class="table selectize-table">' +
-                            '<thead>' +
-                                '<tr>' +
-                                    '<td>Tipo Calzado</td>' +
-                                    '<td>Color</td>' +
-                                    '<td>Talla</td>' +
-                                '</tr>' +
-                            '</thead>' +
-                            '<tbody>' +
-                                '<tr>' +
-                                    '<td>' + escape(item.footweartype) +'</td>' +
-                                    '<td>'+escape(item.color)+'</td>' +
-                                    '<td>'+escape(item.size)+'</td>' +
-                                '</tr>' +
-                            '</tbody>' +
-                        '</table>' +
-                        // '<span class="selectize-caption">' + escape(item.footweartype) + '</span>'+
-                        // '<span class="selectize-caption">' + escape(item.color) + '</span>'+
-                        // '<span class="selectize-caption">' + escape(item.size) + '</span>'+
+                            '<span class="selectize-label">' + escape(item.style) + '</span>' +
+                            '<table class="table table-bordered selectize-table">' +
+                                '<tbody>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Calzado</span></td>' + 
+                                        '<td>' + escape(item.footweartype) +'</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Color</span></td>' +
+                                        '<td>'+escape(item.color)+'</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Talla</span></td>' +
+                                        '<td>'+escape(item.size)+'</td>' +
+                                    '</tr>' +
+                                '</tbody>' +
+                            '</table>' +
                         '</div>';
             }
         },
+
+        // Get info from ajax when user is typing
         load: function(query, callback) {
             
             if (!query.length) return callback();
@@ -50,19 +49,27 @@ $( document ).ready(function() {
                 error: function() {
                     callback();
                 },
-                success: function(res) {                    
+                success: function(res) {
                     callback(res);
                 }
             });
+        },
+
+        // Set users to vuejs data when user
+        onChange:function(value) {
+            // Get the selected item object to get full info
+            // and assign it to vuejs data
+            product = this.options[value];
+            Order.product = product;
+
+            // console.log(product)
+            // $.each(this.options, function( index, product ) {
+            //     if(product.id == value){ 
+            //         Order.product = product;
+            //         console.log(product.style)
+            //     }
+            // });
         }
-        // onChange:function(value) {
-        //     $.each(this.options, function( index, product ) {
-        //         if(product.id == value){ 
-        //             Order.product = product;
-        //             console.log(product)
-        //         }
-        //     });
-        // }
        
     });
 
@@ -72,10 +79,10 @@ $( document ).ready(function() {
     var Order = new Vue({
         el:'#purchase_app',
         data:{
-            // temporary variables
-            model:null,
+            // Temporary values
             qty:null,
             description:null,
+
             product:{},
             order:{
                 serie:null,
@@ -94,7 +101,12 @@ $( document ).ready(function() {
         methods:{
             addItems:function(){
                 this.items.push({
-                    'model':this.model,
+                    'style':this.product.style,
+                    'product_id':this.product.id,
+                    'contpaq_id':this.product.contpaq_id,
+                    'color':this.product.color,
+                    'size':this.product.size,
+                    'footweartype':this.product.footweartype,
                     'qty':this.qty,
                     'description':this.description,
                     'user_id':user_id
