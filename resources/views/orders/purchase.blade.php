@@ -73,7 +73,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Cantidad</th>
-                                                <th>Modelo</th>
+                                                <th>Estilo</th>
                                                 <th>Descripcion</th>
                                                 <th>Usuario</th>
                                                 <th>...</th>
@@ -87,7 +87,7 @@
 
                                                 </td>
                                                 <td>
-                                                    <input id="model" type="text" placeholder="Modelo" class="form-control input-md" v-model="item.model">
+                                                    <input id="style" type="text" placeholder="Estilo" class="form-control input-md" v-model="item.style">
                                                 </td>
                                                 <td>
                                                     <input name="item_descirption" type="text" class="form-control input-md" v-model="item.description">
@@ -133,10 +133,10 @@
                                         </div>
 
                                         <!-- searchbox -->
-                                        <label class="col-md-12 control-label">Articulo</label>
+                                        <label class="col-md-12 control-label">Estilo (nombre del producto)</label>
 
                                         <div class="col-md-12 margin-bottom">
-                                            <select id="select-products" placeholder="Selecciona un articulo..." v-model="model"></select>
+                                            <select id="select-products" placeholder="Selecciona un articulo..." ></select>
                                         </div>
 
                                         <label class="col-md-12 control-label">Descripcion</label>
