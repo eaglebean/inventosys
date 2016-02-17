@@ -61,14 +61,6 @@ $( document ).ready(function() {
             // and assign it to vuejs data
             product = this.options[value];
             Order.product = product;
-
-            // console.log(product)
-            // $.each(this.options, function( index, product ) {
-            //     if(product.id == value){ 
-            //         Order.product = product;
-            //         console.log(product.style)
-            //     }
-            // });
         }
        
     });
