@@ -83,11 +83,11 @@
                                             <tr v-for="(key, item) in items">
                                                 <td>
 
-                                                    <input name="item_qty" type="number" class="form-control input-md" v-model="item.qty">
+                                                    <input name="item_qty" type="number" min="1" class="form-control input-md" v-model="item.qty">
 
                                                 </td>
                                                 <td>
-                                                    <input id="style" type="text" placeholder="Estilo" class="form-control input-md" v-model="item.style">
+                                                   @{{item.style}}
                                                 </td>
                                                 <td>
                                                     <input name="item_descirption" type="text" class="form-control input-md" v-model="item.description">
@@ -129,7 +129,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12 control-label">Cantidad</label>
                                         <div class="col-md-12 margin-bottom">
-                                            <input id="qty" type="number" placeholder="Cantidad" class="form-control input-md" v-model="qty" value="1">
+                                            <input id="qty" type="number" min="1" placeholder="Cantidad" class="form-control input-md" v-model="qty" value="1">
                                         </div>
 
                                         <!-- searchbox -->
