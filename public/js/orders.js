@@ -73,14 +73,14 @@ $( document ).ready(function() {
         data:{
             // Temporary values
             qty:null,
-            description:null,
+            description:'',
 
             product:{},
             order:{
-                serie:null,
-                folio:null,
-                making:null,
-                description:null,
+                serie:'',
+                folio:'',
+                making:'',
+                description:'',
                 order_type_id:1, //Compra table:orders_type
                 user_id: user_id
             },
@@ -114,7 +114,7 @@ $( document ).ready(function() {
                 else {
                     var item = this.items[key];
 
-                    bootbox.confirm("Esta seguro de borrar este articulo " + item.model + "?", function(result) {
+                    bootbox.confirm("Esta seguro de borrar este articulo " + item.style + "?", function(result) {
                         if (result) {
                             Order.items.$remove(item);
                         }
@@ -130,7 +130,7 @@ $( document ).ready(function() {
                     data = {'order':this.order, 'items':this.items};
 
                     this.$http.post('/api/v1/orden', data).then(function(response){
-                        if (response.ok){
+                        if (response.data.status){
                             Splash.show('success', 'Muy bien!', response.data.message);
                         } else {
                             Splash.show('error', 'Ups!', response.data.message);
