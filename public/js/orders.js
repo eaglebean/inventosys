@@ -72,7 +72,7 @@ $( document ).ready(function() {
         el:'#purchase_app',
         data:{
             // Temporary values
-            qty:null,
+            qty:1,
             description:'',
 
             product:{},
@@ -101,7 +101,8 @@ $( document ).ready(function() {
                     'footweartype':this.product.footweartype,
                     'qty':this.qty,
                     'description':this.description,
-                    'user_id':user_id
+                    'user_id':user_id,
+                    'status_id':1 // Abierto
                 });
             },
 
