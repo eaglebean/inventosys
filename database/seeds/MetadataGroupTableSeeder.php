@@ -13,6 +13,7 @@ class MetadataGroupTableSeeder extends Seeder
     public function run()
     {
         $seeds = [
+
             [
                 'label' => 'Inventario',
                 'description' => 'Metadatos para definir ubicaciones de inventario',
@@ -41,7 +42,30 @@ class MetadataGroupTableSeeder extends Seeder
                 'label' => 'Recurso',
                 'description' => 'Metadatos para definir recursos. Por ejemplo: Crear, Borrar, Leer, Buscar, etc',
             ],
+            [
+                'label' => 'Status',
+                'description' => 'Metadatos para definir status. Por ejemplo: Abierto, Completo, etc',
+                'childs' => [
+                    [
+                        'label' => 'Abierto',
+                        'description' => 'Par de calzado',
+                    ],
+                    [
+                        'label' => 'Cerrado',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Pendiente',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Error',
+                        'description' => '',
+                    ],
+                ],
+            ],
 
+            // Metadata Color
             [
                 'label' => 'Color',
                 'description' => 'Colores disponibles para productos',
@@ -58,9 +82,35 @@ class MetadataGroupTableSeeder extends Seeder
                         'label' => 'Negro',
                         'description' => '',
                     ],
+                    [
+                        'label' => 'Naranja',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Coral',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Azul',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Plata',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Oro',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Multicolor',
+                        'description' => '',
+                    ],
+
                 ],
             ],
 
+            // Metadata Size
             [
                 'label' => 'Talla',
                 'description' => 'Tallas disponibles para productos',
@@ -80,6 +130,8 @@ class MetadataGroupTableSeeder extends Seeder
 
                 ],
             ],
+
+            // Metadata footwear type
             [
                 'label' => 'Tipo de calzado',
                 'description' => 'Prefijo para producto',
@@ -100,6 +152,7 @@ class MetadataGroupTableSeeder extends Seeder
                 ],
             ],
 
+            // Metadata unit
             [
                 'label' => 'Tipo unidad',
                 'description' => 'Prefijo para producto',
@@ -116,7 +169,6 @@ class MetadataGroupTableSeeder extends Seeder
                         'label' => 'Singular',
                         'description' => '',
                     ],
-
                 ],
             ],
         ];
