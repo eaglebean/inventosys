@@ -17,6 +17,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('user_id');
             $table->integer('order_id');
             $table->integer('product_id');
+            $table->integer('contpaq_id'); // useful if order is created in a call api
             $table->integer('qty'); //qty in order
             $table->integer('entered_qty'); //qty entered inventory
             $table->text('description');
