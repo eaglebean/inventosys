@@ -72,11 +72,14 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Cantidad</th>
-                                                <th>Estilo</th>
-                                                <th>Descripcion</th>
-                                                <th>Usuario</th>
-                                                <th>...</th>
+                                                <th class="col-md-1">Cantidad</th>
+                                                <th class="col-md-3">Estilo</th>
+                                                <th class="col-md-1">Tipo Calzado</th>
+                                                <th class="col-md-1">Color</th>
+                                                <th class="col-md-1">Talla</th>
+                                                <th class="col-md-3">Descripcion</th>
+                                                <th class="col-md-1">Usuario</th>
+                                                <th class="col-md-1">...</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -89,6 +92,19 @@
                                                 <td>
                                                    @{{item.style}}
                                                 </td>
+
+                                                <td>
+                                                   @{{item.footweartype}}
+                                                </td>
+
+                                                <td>
+                                                   @{{item.color}}
+                                                </td>
+
+                                                <td>
+                                                   @{{item.size}}
+                                                </td>
+
                                                 <td>
                                                     <input name="item_descirption" type="text" class="form-control input-md" v-model="item.description">
                                                 </td>
