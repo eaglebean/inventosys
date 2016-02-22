@@ -16,7 +16,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $data = ['orders' => Orders::all()];
+        $data = ['orders' => Orders::paginate(2)];
 
         return view('orders.index', $data);
     }
