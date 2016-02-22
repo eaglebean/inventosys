@@ -12,7 +12,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ordenes de compra</h1>
+                    <h1 class="page-header">Lista de Ordenes</h1>
 
 
 
@@ -47,7 +47,8 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th><input type="checkbox" id="checkall"></th>
+                                            <th class="md"><input type="checkbox" id="checkall"></th>
+                                            <th>Tipo de orden</th>
                                             <th>Numero</th>
                                             <th>Descripcion</th>
                                             <th>Usuario</th>
@@ -58,15 +59,14 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($orders as $order )
-                                            <tr>
-                                                <td><input type="checkbox" id="user_id"></td>
-                                                <td><a href="#">{{$order->number}}</a></td>
+                                            <tr data-id="{{$order->id}}">
+                                                <td><input type="checkbox" class="checkbox-selection"></td>
+                                                <td>{{$order->ordertype->label}}</td>
+                                                <td><a href="#">{{$order->serie}}</a></td>
                                                 <td>{{$order->description}}</td>
                                                 <td>{{$order->user->name}}</td>
                                                 <td>{{$order->created_at}}</td>
                                                 <td>{{$order->updated_at}}</td>
-
-
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -80,6 +80,10 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
+
+                    <!-- pagination -->
+                    {!! $orders->appends(['sort' => 'updated_atlaravel'])->render() !!}
+                    <!-- pagination -->
 
 
 
@@ -96,5 +100,6 @@
 @stop
 @section("scripts")
     @parent
+    <script src="/js/list.js"></script>
 
 @stop
