@@ -25,4 +25,12 @@ class Orders extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+
+    /**
+     * Get type of order
+     */
+    public function ordertype()
+    {
+        return $this->hasOne('App\Models\Metadata', 'id', 'order_type_id');
+    }
 }
