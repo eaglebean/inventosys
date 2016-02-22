@@ -148,8 +148,6 @@
                         <div class="clearfix"></div>
                         <button type="button" class="btn btn-primary pull-right" @click="saveAction" :disabled="isStyle">Guardar</button>
 
-
-                        <pre>@{{$data | json}}</pre>
                     </div>
 
 
