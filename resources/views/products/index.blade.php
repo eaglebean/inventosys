@@ -99,6 +99,7 @@
 @stop
 @section("scripts")
     @parent
+    <script src="/js/list.js"></script>
     <script src="/js/products.js"></script>
 
 @stop
