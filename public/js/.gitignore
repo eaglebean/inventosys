@@ -3,10 +3,11 @@
 
 # But not these files...
 !.gitignore
-!users.js
-!orders.js
+!users*
+!orders*
 !app.js
 !products*
-!inventory.js
+!inventory*
+!list.js
 
 
