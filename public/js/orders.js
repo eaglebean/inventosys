@@ -123,6 +123,24 @@ $( document ).ready(function() {
                 }
             },
 
+            reset:function(){
+                $('#order_serie').focus();
+                
+                this.qty=1,
+                this.description='',
+
+                this.product={},
+                this.order ={
+                    serie:'',
+                    folio:'',
+                    making:'',
+                    description:'',
+                    order_type_id:1, 
+                    user_id: user_id
+                };
+                this.items=[]
+            },
+
             /**
              * API calls
              */
@@ -132,7 +150,9 @@ $( document ).ready(function() {
 
                     this.$http.post('/api/v1/orden', data).then(function(response){
                         if (response.data.status){
-                            Splash.show('success', 'Muy bien!', response.data.message);
+                            Splash.show('success', 'Muy bien!', response.data.message); 
+                            Order.reset();
+
                         } else {
                             Splash.show('error', 'Ups!', response.data.message);
                             
