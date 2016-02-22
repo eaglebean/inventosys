@@ -5,43 +5,64 @@ use Illuminate\Database\Seeder;
 
 class MetadataGroupTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
-     *
+     * NOTE: If child array is added do it at the last element
      * @return void
      */
     public function run()
     {
         $seeds = [
+            // Metadata Order Type
             [
-                'label' => 'Inventario',
-                'description' => 'Metadatos para definir ubicaciones de inventario',
-            ],
-            [
-                'label' => 'Racks',
-                'description' => 'Mtadatos para definir ubicaciones en racks',
-            ],
-            [
-                'label' => 'Racks',
-                'description' => 'Mtadatos para definir ubicaciones en racks',
-            ],
-            [
-                'label' => 'Bodegas',
-                'description' => 'Mtadatos para definir ubicaciones en bodegas. Por ejemplo: GDL,CANCUN, etc',
-            ],
-            [
-                'label' => 'Roles',
-                'description' => 'Mtadatos para definir roles de usuario. Por ejemplo: Administrador, Supervisor, etc',
-            ],
-            [
-                'label' => 'Grupo de recursos',
-                'description' => 'Metadatos para definir grupos de recursos. Estos recursos seran utilizados para definir los privilegios que cada usario tiene, por ejemplo: Ordenes, Inventario, Usuarios',
-            ],
-            [
-                'label' => 'Recurso',
-                'description' => 'Metadatos para definir recursos. Por ejemplo: Crear, Borrar, Leer, Buscar, etc',
+                'label' => 'Tipo de Orden',
+                'description' => 'Metadatos para definir tipo de ordenes',
+                'childs' => [
+                    [
+                        'label' => 'Compras',
+                        'description' => 'Par de calzado',
+                    ],
+                    [
+                        'label' => 'Ventas',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Devolucion',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Perdidas',
+                        'description' => '',
+                    ],
+                ],
             ],
 
+            // Metadata Status
+            [
+                'label' => 'Status',
+                'description' => 'Metadatos para definir status. Por ejemplo: Abierto, Completo, etc',
+                'childs' => [
+                    [
+                        'label' => 'Abierto',
+                        'description' => 'Par de calzado',
+                    ],
+                    [
+                        'label' => 'Cerrado',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Pendiente',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Error',
+                        'description' => '',
+                    ],
+                ],
+            ],
+
+            // Metadata Color
             [
                 'label' => 'Color',
                 'description' => 'Colores disponibles para productos',
@@ -58,9 +79,35 @@ class MetadataGroupTableSeeder extends Seeder
                         'label' => 'Negro',
                         'description' => '',
                     ],
+                    [
+                        'label' => 'Naranja',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Coral',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Azul',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Plata',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Oro',
+                        'description' => '',
+                    ],
+                    [
+                        'label' => 'Multicolor',
+                        'description' => '',
+                    ],
+
                 ],
             ],
 
+            // Metadata Size
             [
                 'label' => 'Talla',
                 'description' => 'Tallas disponibles para productos',
@@ -80,6 +127,8 @@ class MetadataGroupTableSeeder extends Seeder
 
                 ],
             ],
+
+            // Metadata footwear type
             [
                 'label' => 'Tipo de calzado',
                 'description' => 'Prefijo para producto',
@@ -100,6 +149,7 @@ class MetadataGroupTableSeeder extends Seeder
                 ],
             ],
 
+            // Metadata unit
             [
                 'label' => 'Tipo unidad',
                 'description' => 'Prefijo para producto',
@@ -116,8 +166,37 @@ class MetadataGroupTableSeeder extends Seeder
                         'label' => 'Singular',
                         'description' => '',
                     ],
-
                 ],
+            ],
+
+            // Metadata with no childs defined yet
+            [
+                'label' => 'Inventario',
+                'description' => 'Metadatos para definir ubicaciones de inventario',
+            ],
+            [
+                'label' => 'Racks',
+                'description' => 'Mtadatos para definir ubicaciones en racks',
+            ],
+            [
+                'label' => 'Nivel en Racks',
+                'description' => 'Mtadatos para definir ubicaciones en racks',
+            ],
+            [
+                'label' => 'Bodegas',
+                'description' => 'Mtadatos para definir ubicaciones en bodegas. Por ejemplo: GDL,CANCUN, etc',
+            ],
+            [
+                'label' => 'Roles',
+                'description' => 'Mtadatos para definir roles de usuario. Por ejemplo: Administrador, Supervisor, etc',
+            ],
+            [
+                'label' => 'Grupo de recursos',
+                'description' => 'Metadatos para definir grupos de recursos. Estos recursos seran utilizados para definir los privilegios que cada usario tiene, por ejemplo: Ordenes, Inventario, Usuarios',
+            ],
+            [
+                'label' => 'Recurso',
+                'description' => 'Metadatos para definir recursos. Por ejemplo: Crear, Borrar, Leer, Buscar, etc',
             ],
         ];
         $childs = [];

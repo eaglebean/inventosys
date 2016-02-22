@@ -32,23 +32,23 @@ class ProductsController extends Controller
     {
         // Get color metadata
         $colors = Metadata::where('active', true)
-            ->where('metadata_group_id', 8)
+            ->where('metadata_group_id', 3)
             ->orderBy('label', 'asc')
             ->get();
 
         // Get size metadata
         $sizes = Metadata::where('active', true)
-            ->where('metadata_group_id', 9)
+            ->where('metadata_group_id', 4)
             ->orderBy('label', 'asc')
             ->get();
 
         $footweartypes = Metadata::where('active', true)
-            ->where('metadata_group_id', 10)
+            ->where('metadata_group_id', 5)
             ->orderBy('label', 'asc')
             ->get();
 
         $units = Metadata::where('active', true)
-            ->where('metadata_group_id', 11)
+            ->where('metadata_group_id', 6)
             ->orderBy('label', 'asc')
             ->get();
 

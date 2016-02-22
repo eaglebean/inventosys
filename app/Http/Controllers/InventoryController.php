@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\WarehouseLocation;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -25,10 +26,10 @@ class InventoryController extends Controller
     public function create()
     {
         $data = [
-            'warehouses' => Warehouse::all(),
+            'warehouses' => WarehouseLocation::all(),
         ];
 
-        return view('inventory.enter', $data);
+        return view('inventory.entry', $data);
     }
 
     /**

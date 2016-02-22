@@ -17,29 +17,28 @@ $( document ).ready(function() {
         render: {
             option: function(item, escape) {
                 return  '<div class="selectize-row">' +
-                        '<span class="selectize-label">' + escape(item.style) + '</span>' +
-                        '<table class="table selectize-table">' +
-                            '<thead>' +
-                                '<tr>' +
-                                    '<td>Tipo Calzado</td>' +
-                                    '<td>Color</td>' +
-                                    '<td>Talla</td>' +
-                                '</tr>' +
-                            '</thead>' +
-                            '<tbody>' +
-                                '<tr>' +
-                                    '<td>' + escape(item.footweartype) +'</td>' +
-                                    '<td>'+escape(item.color)+'</td>' +
-                                    '<td>'+escape(item.size)+'</td>' +
-                                '</tr>' +
-                            '</tbody>' +
-                        '</table>' +
-                        // '<span class="selectize-caption">' + escape(item.footweartype) + '</span>'+
-                        // '<span class="selectize-caption">' + escape(item.color) + '</span>'+
-                        // '<span class="selectize-caption">' + escape(item.size) + '</span>'+
+                            '<span class="selectize-label">' + escape(item.style) + '</span>' +
+                            '<table class="table table-bordered selectize-table">' +
+                                '<tbody>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Calzado</span></td>' + 
+                                        '<td>' + escape(item.footweartype) +'</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Color</span></td>' +
+                                        '<td>'+escape(item.color)+'</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Talla</span></td>' +
+                                        '<td>'+escape(item.size)+'</td>' +
+                                    '</tr>' +
+                                '</tbody>' +
+                            '</table>' +
                         '</div>';
             }
         },
+
+        // Get info from ajax when user is typing
         load: function(query, callback) {
             
             if (!query.length) return callback();
@@ -50,19 +49,19 @@ $( document ).ready(function() {
                 error: function() {
                     callback();
                 },
-                success: function(res) {                    
+                success: function(res) {
                     callback(res);
                 }
             });
+        },
+
+        // Set users to vuejs data when user
+        onChange:function(value) {
+            // Get the selected item object to get full info
+            // and assign it to vuejs data
+            product = this.options[value];
+            Order.product = product;
         }
-        // onChange:function(value) {
-        //     $.each(this.options, function( index, product ) {
-        //         if(product.id == value){ 
-        //             Order.product = product;
-        //             console.log(product)
-        //         }
-        //     });
-        // }
        
     });
 
@@ -72,16 +71,16 @@ $( document ).ready(function() {
     var Order = new Vue({
         el:'#purchase_app',
         data:{
-            // temporary variables
-            model:null,
-            qty:null,
-            description:null,
+            // Temporary values
+            qty:1,
+            description:'',
+
             product:{},
             order:{
-                serie:null,
-                folio:null,
-                making:null,
-                description:null,
+                serie:'',
+                folio:'',
+                making:'',
+                description:'',
                 order_type_id:1, //Compra table:orders_type
                 user_id: user_id
             },
@@ -94,10 +93,16 @@ $( document ).ready(function() {
         methods:{
             addItems:function(){
                 this.items.push({
-                    'model':this.model,
+                    'style':this.product.style,
+                    'product_id':this.product.id,
+                    'contpaq_id':this.product.contpaq_id,
+                    'color':this.product.color,
+                    'size':this.product.size,
+                    'footweartype':this.product.footweartype,
                     'qty':this.qty,
                     'description':this.description,
-                    'user_id':user_id
+                    'user_id':user_id,
+                    'status_id':1 // Abierto
                 });
             },
 
@@ -110,12 +115,30 @@ $( document ).ready(function() {
                 else {
                     var item = this.items[key];
 
-                    bootbox.confirm("Esta seguro de borrar este articulo " + item.model + "?", function(result) {
+                    bootbox.confirm("Esta seguro de borrar este articulo " + item.style + "?", function(result) {
                         if (result) {
                             Order.items.$remove(item);
                         }
                     }); 
                 }
+            },
+
+            reset:function(){
+                $('#order_serie').focus();
+                
+                this.qty=1,
+                this.description='',
+
+                this.product={},
+                this.order ={
+                    serie:'',
+                    folio:'',
+                    making:'',
+                    description:'',
+                    order_type_id:1, 
+                    user_id: user_id
+                };
+                this.items=[]
             },
 
             /**
@@ -126,8 +149,10 @@ $( document ).ready(function() {
                     data = {'order':this.order, 'items':this.items};
 
                     this.$http.post('/api/v1/orden', data).then(function(response){
-                        if (response.ok){
-                            Splash.show('success', 'Muy bien!', response.data.message);
+                        if (response.data.status){
+                            Splash.show('success', 'Muy bien!', response.data.message); 
+                            Order.reset();
+
                         } else {
                             Splash.show('error', 'Ups!', response.data.message);
                             

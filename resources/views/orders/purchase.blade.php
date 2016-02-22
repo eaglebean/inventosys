@@ -72,23 +72,39 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Cantidad</th>
-                                                <th>Modelo</th>
-                                                <th>Descripcion</th>
-                                                <th>Usuario</th>
-                                                <th>...</th>
+                                                <th class="col-md-1">Cantidad</th>
+                                                <th class="col-md-3">Estilo</th>
+                                                <th class="col-md-1">Tipo Calzado</th>
+                                                <th class="col-md-1">Color</th>
+                                                <th class="col-md-1">Talla</th>
+                                                <th class="col-md-3">Descripcion</th>
+                                                <th class="col-md-1">Usuario</th>
+                                                <th class="col-md-1">...</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="(key, item) in items">
                                                 <td>
 
-                                                    <input name="item_qty" type="number" class="form-control input-md" v-model="item.qty">
+                                                    <input name="item_qty" type="number" min="1" class="form-control input-md" v-model="item.qty">
 
                                                 </td>
                                                 <td>
-                                                    <input id="model" type="text" placeholder="Modelo" class="form-control input-md" v-model="item.model">
+                                                   @{{item.style}}
                                                 </td>
+
+                                                <td>
+                                                   @{{item.footweartype}}
+                                                </td>
+
+                                                <td>
+                                                   @{{item.color}}
+                                                </td>
+
+                                                <td>
+                                                   @{{item.size}}
+                                                </td>
+
                                                 <td>
                                                     <input name="item_descirption" type="text" class="form-control input-md" v-model="item.description">
                                                 </td>
@@ -129,14 +145,14 @@
                                     <div class="form-group">
                                         <label class="col-md-12 control-label">Cantidad</label>
                                         <div class="col-md-12 margin-bottom">
-                                            <input id="qty" type="number" placeholder="Cantidad" class="form-control input-md" v-model="qty" value="1">
+                                            <input id="qty" type="number" min="1" placeholder="Cantidad" class="form-control input-md" v-model="qty" value="1">
                                         </div>
 
                                         <!-- searchbox -->
-                                        <label class="col-md-12 control-label">Articulo</label>
+                                        <label class="col-md-12 control-label">Estilo (nombre del producto)</label>
 
                                         <div class="col-md-12 margin-bottom">
-                                            <select id="select-products" placeholder="Selecciona un articulo..." v-model="model"></select>
+                                            <select id="select-products" placeholder="Selecciona un articulo..." ></select>
                                         </div>
 
                                         <label class="col-md-12 control-label">Descripcion</label>

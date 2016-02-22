@@ -8,7 +8,7 @@ class OrderItems extends Model
 {
     protected $table = 'orders_items';
 
-    protected $fillable = array('order_id', 'user_id', 'model', 'qty', 'description', 'status_id');
+    protected $fillable = array('order_id', 'user_id', 'product_id', 'contpaq_id', 'qty', 'description', 'status_id');
 
     /**
      * Get the order that owns the items.

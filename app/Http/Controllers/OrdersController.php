@@ -16,7 +16,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $data = ['orders' => Orders::all()];
+        $data = ['orders' => Orders::paginate(2)];
 
         return view('orders.index', $data);
     }
@@ -44,21 +44,27 @@ class OrdersController extends Controller
         $items_array = $request->input('items', []);
 
         if (count($order_array) > 0) {
-            // Create order
-            $order = Orders::create($order_array);
-            $order->find($order->id);
+            try {
+                // Create order
+                $order = Orders::create($order_array);
+                $order->find($order->id);
 
-            // Get order items
-            if (count($items_array) > 0) {
-                foreach ($items_array as $item) {
-                    $items[] = new OrderItems($item);
+                // Get order items
+                if (count($items_array) > 0) {
+                    foreach ($items_array as $item) {
+                        $items[] = new OrderItems($item);
+                    }
+
+                    $order->items()->saveMany($items);
                 }
 
-                $order->items()->saveMany($items);
+                $status = true;
+                $message = 'La orden fue creada exitosamente!';
+            } catch (\Illuminate\Database\QueryException $e) {
+                $status = false;
+                $message = $e->errorInfo;
             }
 
-            $status = true;
-            $message = 'La orden fue creada exitosamente!';
         } else {
             $status = false;
             $message = 'La orden no tiene suficiente informacion!';
