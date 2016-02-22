@@ -178,20 +178,8 @@ $( document ).ready(function() {
         vueProduct.getProduct(product_id);
     });
 
-    $('#checkall').click(function(){
-        checked = $(this).prop('checked');
-
-        // Set/unset all checkbox
-        $('.checkbox-selection').prop('checked', checked);
-    });
-
     $('#action-delete').click(function(){
-        selected_boxes = $('.checkbox-selection:checked');
-        ids=[];
-
-        selected_boxes.each(function(index, element){
-            ids[index] = $(element).closest('tr').data('id');
-        });
+        ids=getIdsFromCheckedBoxes();
         count = ids.length;
 
         if (count > 0 ) {
