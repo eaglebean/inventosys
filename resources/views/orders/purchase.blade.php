@@ -6,9 +6,9 @@
 @stop
 
 @section("styles")
-@parent
-    <link rel="stylesheet" type="text/css" href="/css/selectize.bootstrap3.css">
-
+  @parent
+  <link rel="stylesheet" type="text/css" href="/css/selectize.bootstrap3.css">
+@stop
 
 @stop
 
