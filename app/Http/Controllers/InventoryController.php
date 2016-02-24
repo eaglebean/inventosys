@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Orders;
 use App\Models\WarehouseLocation;
 use Illuminate\Http\Request;
 
@@ -23,10 +24,21 @@ class InventoryController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create($id, Request $request)
     {
+        $warehouse = $request->input('warehouse');
+        $rack = $request->input('rack');
+        $reack_section = $request->input('rack_section');
+
+        // Get order details
+        $order = Orders::where('serie', $id)
+            ->orWhere('folio', $id)
+            ->orWhere('making', $id)
+            ->first();
+
         $data = [
             'warehouses' => WarehouseLocation::all(),
+            'order' => $order,
         ];
 
         return view('inventory.entry', $data);
