@@ -325,7 +325,7 @@
                                         <a href="/inventario/egresar">Egresar productos</a>
                                     </li>
                                     <li>
-                                        <a href="/inventario/ingresar">Ingresar productos</a>
+                                        <a href="/inventario/ingresar/default">Ingresar productos</a>
                                     </li>
                                     <li>
                                         <a href="/inventario/reportes">Reportes</a>
