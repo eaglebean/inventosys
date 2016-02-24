@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ordenes/compras', 'OrdersController@purchase');
     Route::get('ordenes', 'OrdersController@index');
     Route::post('orders', 'OrdersController@store');
+    Route::get('ordenes/buscar/{keyword}', 'OrdersController@search');
 
     // Products
     Route::get('productos', 'ProductsController@index');
@@ -53,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Inventario
     Route::get('inventario/reportes', 'InventoryController@index');
-    Route::get('inventario/ingresar', 'InventoryController@create');
+    Route::get('inventario/ingresar/{id}', 'InventoryController@create');
 
 });
 
