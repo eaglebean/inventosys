@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\OrderItems;
 use App\Models\Orders;
 use Illuminate\Http\Request;
+use Response;
 
 class OrdersController extends Controller
 {
@@ -119,6 +120,28 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display the specified resource by name.
+     *
+     * @param  string  $keyword
+     * @return Response
+     */
+    public function search($keyword)
+    {
+        $orders = Orders::where("serie", "LIKE", "%{$keyword}%")
+            ->orWhere("folio", "LIKE", "%{$keyword}%")
+            ->orWhere("making", "LIKE", "%{$keyword}%")
+            ->get();
+
+        // Get user and order type
+        foreach ($orders as $order) {
+            $order->user;
+            $order->ordertype;
+        }
+
+        return Response::json($orders);
     }
 
     /*
