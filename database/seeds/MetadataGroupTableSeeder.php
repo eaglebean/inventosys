@@ -20,11 +20,11 @@ class MetadataGroupTableSeeder extends Seeder
                 'description' => 'Metadatos para definir tipo de ordenes',
                 'childs' => [
                     [
-                        'label' => 'Compras',
+                        'label' => 'Compra',
                         'description' => 'Par de calzado',
                     ],
                     [
-                        'label' => 'Ventas',
+                        'label' => 'Venta',
                         'description' => '',
                     ],
                     [
@@ -32,7 +32,7 @@ class MetadataGroupTableSeeder extends Seeder
                         'description' => '',
                     ],
                     [
-                        'label' => 'Perdidas',
+                        'label' => 'Perdida',
                         'description' => '',
                     ],
                 ],
