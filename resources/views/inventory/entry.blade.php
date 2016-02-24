@@ -2,7 +2,12 @@
 
 @section('title')
   @parent
- Inventario - (Ingreso de articulos)
+  Inventario - (Ingreso de articulos)
+@stop
+
+@section("styles")
+  @parent
+  <link rel="stylesheet" type="text/css" href="/css/selectize.bootstrap3.css">
 @stop
 
 @section('content')
@@ -17,13 +22,19 @@
                     <!-- Order info -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="input-group">
-                              <span class="input-group-addon">Orden </span>
-                              <input type="text" id="order"  class="form-control" placeholder="Ingresa el numero de orden">
-                              <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                              </span>
-                            </div>
+                            <form action="">
+                                <div class="input-group">
+
+                                    <!-- <span class="input-group-addon">Orden </span> -->
+                                    <!-- <input type="text" id="order"  class="form-control" placeholder="Ingresa el numero de orden"> -->
+                                    <select id="select-orders" placeholder="Ingresa el numero de orden..." ></select>
+
+
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Go!</button>
+                                  </span>
+                                </div>
+                            </form>
                             <div class="clearfix"></div>
                         </div>
 
@@ -142,5 +153,6 @@
 @stop
 @section("scripts")
     @parent
-
+    <script src="/js/selectize.min.js"></script>
+    <script src="/js/inventory.entry.js"></script>
 @stop
