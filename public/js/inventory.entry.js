@@ -8,6 +8,32 @@
  */
 
 $( document ).ready(function() {
+
+    var Inventory = new Vue({
+        el:'#app',
+        data:{
+            // Temporary values
+            qty:1,
+
+            product:{},
+            order:{},
+            items:[]
+        },
+
+        /**
+         * Custom methods
+         */
+        methods:{
+        },
+
+        computed: {
+        },
+        // ready:function(){
+            
+        // }
+    });
+
+
     //  Selectize initialization
     $('#select-orders').selectize({
         maxOptions: 5,
@@ -21,30 +47,24 @@ $( document ).ready(function() {
 
                             '<table class="table table-bordered selectize-table">' +
                                 '<tbody>' +
+                                    
                                     '<tr>' +
-                                        '<td class="col-md-1">' +
-                                            '<table class="table  selectize-table">' +
-                                                '<tbody>' +
-                                                    '<tr>' +
-                                                        '<td class="bkg-gray col-md-1"><span class="left-header">Serie</span></td>' + 
-                                                        '<td class="col-md-1">' + escape(item.serie) +'</td>' +
-                                                    '</tr>' +
-                                                    '<tr>' +
-                                                        '<td class="bkg-gray col-md-1"><span class="left-header">Folio</span></td>' +
-                                                        '<td class="col-md-1">'+escape(item.folio)+'</td>' +
-                                                    '</tr>' +
-                                                    '<tr>' +
-                                                        '<td class="bkg-gray col-md-1"><span class="left-header">Factura</span></td>' +
-                                                        '<td class="col-md-1">'+escape(item.created_at)+'</td>' +
-                                                    '</tr>' +
-                                                '</tbody>' +
-                                            '</table>' +
-                                        '</td>' +
-                                        '<td class="col-md-2">'+
-                                            '<p>' + escape(item.user.name) + '</p>' +
-                                            '<p>' + escape(item.ordertype.label) + '</p>' +
-                                        '</td>'+
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Serie</span></td>' + 
+                                        '<td class="col-md-1">' + escape(item.serie) +'</td>' +
                                     '</tr>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Folio</span></td>' +
+                                        '<td class="col-md-1">'+escape(item.folio)+'</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Fecha</span></td>' +
+                                        '<td class="col-md-1">'+escape(item.created_at)+'</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td class="bkg-gray col-md-1"><span class="left-header">Tipo</span></td>' +
+                                        '<td class="col-md-1">'+escape(item.ordertype.label)+'</td>' +
+                                    '</tr>' +
+                                           
                                 '</tbody>' +
                             '</table>' +
 
@@ -70,12 +90,13 @@ $( document ).ready(function() {
         },
 
         // Set users to vuejs data when user
-        // onChange:function(value) {
-        //     // Get the selected item object to get full info
-        //     // and assign it to vuejs data
-        //     product = this.options[value];
-        //     Order.product = product;
-        // }
+        onChange:function(value) {
+            // Get the selected item object to get full info
+            // and assign it to vuejs data
+            // product = this.options[value];
+            Inventory.order = this.options[value];
+            console.log(Order)
+        }
        
     });
   
