@@ -14,7 +14,7 @@
 
     <div id="page-wrapper" style="min-height: 497px;">
         <div class="container-fluid">
-            <div class="row">
+            <div id="app" class="row">
 
                 <div class="col-lg-12">
                     <h3 class="page-header">Inventario (ingreso)</h3>
@@ -29,42 +29,60 @@
                                     <!-- <input type="text" id="order"  class="form-control" placeholder="Ingresa el numero de orden"> -->
                                     <select id="select-orders" placeholder="Ingresa el numero de orden..." ></select>
 
-
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Go!</button>
-                                  </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
                                 </div>
                             </form>
                             <div class="clearfix"></div>
                         </div>
 
                         <div class="panel-body">
+
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Qty</th>
-                                            <th>Ingresado</th>
-                                            <th>Articulo</th>
-                                            <th>Usuario</th>
+                                            <th class="col-md-1">Cantidad</th>
+                                            <th class="col-md-3">Estilo</th>
+                                            <th class="col-md-1">Tipo Calzado</th>
+                                            <th class="col-md-1">Color</th>
+                                            <th class="col-md-1">Talla</th>
+                                            <th class="col-md-3">Descripcion</th>
+                                            <th class="col-md-1">Usuario</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr v-for="(key, item) in order.items">
+                                            <td>
 
-                                            <tr>
-                                                <td>500</td>
-                                                <td>0</td>
-                                                <td>CalzadoABC</td>
-                                                <td>Canito</td>
-                                            </tr>
+                                                @{{item.qty}}
 
-<tr>
-                                                <td>500</td>
-                                                <td>0</td>
-                                                <td>CalzadoABC</td>
-                                                <td>Canito</td>
-                                            </tr>
+                                            </td>
+                                            <td>
+                                                 @{{item.style}}
+                                            </td>
 
+                                            <td>
+                                                @{{item.footweartype}}
+                                            </td>
+
+                                            <td>
+                                                @{{item.color}}
+                                            </td>
+
+                                            <td>
+                                                @{{item.size}}
+                                            </td>
+
+                                            <td>
+                                                @{{item.description}}
+                                            </td>
+
+                                            <td>
+                                                @{{item.user_id}}
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -123,7 +141,7 @@
                                     </div>
                                 </div>
 
-                                <div class="clearfix margin-bottom"></div>
+                                <div class="clearfix"></div>
 
                                 <div class="col-xs-12">
                                     <button type="button" class="btn btn-success pull-right">Ingresar</button>
@@ -142,7 +160,7 @@
 
                 </div>
                 <!-- /.col-lg-12 -->
-
+<pre>@{{$data | json}}</pre>
             </div>
             <!-- /.row -->
 
