@@ -17,4 +17,15 @@ class OrderItems extends Model
     {
         return $this->belongsTo('App\Models\Orders', 'id');
     }
+
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+
+    public function product()
+    {
+        return $this->hasOne('App\Models\Products', 'id', 'product_id');
+    }
+
 }
