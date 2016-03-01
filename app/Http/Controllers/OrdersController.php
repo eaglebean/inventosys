@@ -139,6 +139,17 @@ class OrdersController extends Controller
         foreach ($orders as $order) {
             $order->user;
             $order->ordertype;
+            $items = $order->items;
+
+            foreach ($items as $item) {
+                $item->user;
+                $item->product;
+                $item->product->footweartype = $item->product->getFootweartype();
+                $item->product->color = $item->product->getColor();
+                $item->product->size = $item->product->getSize();
+                $item->product->unit = $item->product->getUnit();
+            }
+
         }
 
         return Response::json($orders);
