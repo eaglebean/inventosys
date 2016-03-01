@@ -8,7 +8,7 @@
 @section('content')
 
     <div id="page-wrapper" style="min-height: 497px;">
-        <div class="container-fluid">
+        <div id="app" class="container-fluid">
             <div class="row">
 
                 <div class="col-lg-12">
@@ -54,7 +54,6 @@
                                             <th>Usuario</th>
                                             <th>Creada</th>
                                             <th>Actualizada</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
