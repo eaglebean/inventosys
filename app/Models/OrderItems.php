@@ -28,4 +28,9 @@ class OrderItems extends Model
         return $this->hasOne('App\Models\Products', 'id', 'product_id');
     }
 
+    public function getStatus()
+    {
+        return Metadata::getLabel($this->status_id);
+    }
+
 }
