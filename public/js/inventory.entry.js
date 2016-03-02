@@ -24,6 +24,11 @@ $( document ).ready(function() {
          * Custom methods
          */
         methods:{
+            isClosed:function(status){
+                return true;
+                console.log(status)
+                // return (status == 'Abierto');
+            }
         },
 
         computed: {
@@ -93,9 +98,7 @@ $( document ).ready(function() {
         onChange:function(value) {
             // Get the selected item object to get full info
             // and assign it to vuejs data
-            // product = this.options[value];
             Inventory.order = this.options[value];
-            console.log(Order)
         }
        
     });
