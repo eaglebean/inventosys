@@ -130,27 +130,7 @@ class OrdersController extends Controller
      */
     public function search($keyword)
     {
-        $orders = Orders::where("serie", "LIKE", "%{$keyword}%")
-            ->orWhere("folio", "LIKE", "%{$keyword}%")
-            ->orWhere("making", "LIKE", "%{$keyword}%")
-            ->get();
-
-        // Get user and order type
-        foreach ($orders as $order) {
-            $order->user;
-            $order->ordertype;
-            $items = $order->items;
-
-            foreach ($items as $item) {
-                $item->user;
-                $item->product;
-                $item->product->footweartype = $item->product->getFootweartype();
-                $item->product->color = $item->product->getColor();
-                $item->product->size = $item->product->getSize();
-                $item->product->unit = $item->product->getUnit();
-            }
-
-        }
+        $orders = Orders::findByNumber($keyword);
 
         return Response::json($orders);
     }
