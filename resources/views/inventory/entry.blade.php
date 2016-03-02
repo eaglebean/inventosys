@@ -43,44 +43,43 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="col-md-1">Cantidad</th>
+                                            <th class="col-md-1">Qty</th>
+                                            <th class="col-md-3">Ing</th>
                                             <th class="col-md-3">Estilo</th>
                                             <th class="col-md-1">Tipo Calzado</th>
                                             <th class="col-md-1">Color</th>
                                             <th class="col-md-1">Talla</th>
-                                            <th class="col-md-3">Descripcion</th>
                                             <th class="col-md-1">Usuario</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(key, item) in order.items">
+                                        <tr v-for="(key, item) in order.items" v-bind:class="{'text-strike':isClosed(item.status)}" data-index="@{{$index}}">
                                             <td>
-
-                                                @{{item.qty}}
-
-                                            </td>
-                                            <td>
-                                                 @{{item.style}}
+                                                <p>@{{item.qty}}</p>
                                             </td>
 
                                             <td>
-                                                @{{item.footweartype}}
+                                                <p>@{{item.entered_qty}}</p>
                                             </td>
 
                                             <td>
-                                                @{{item.color}}
+                                                <p>@{{item.product.style}}</p>
                                             </td>
 
                                             <td>
-                                                @{{item.size}}
+                                                <p>@{{item.product.footweartype}}</p>
                                             </td>
 
                                             <td>
-                                                @{{item.description}}
+                                                <p>@{{item.product.color}}</p>
                                             </td>
 
                                             <td>
-                                                @{{item.user_id}}
+                                                <p>@{{item.product.size}}</p>
+                                            </td>
+
+                                            <td>
+                                                <p>@{{item.user.name}}</p>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -98,29 +97,15 @@
 
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon inventory-span-width">Bodega</span>
-                                        <select>
-                                             @foreach ($warehouses as $warehouse )
-                                            <option value=""></option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="col-xs-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon inventory-span-width">Rack #</span>
-                                        <input type="text" id="reack"  class="form-control" placeholder="Número de rack">
-                                    </div>
-                                </div>
+
+
 
                                 <div class="col-xs-12">
 
                                     <div class="input-group">
-                                        <span class="input-group-addon inventory-span-width">Sección #</span>
-                                        <input type="text" id="seccion"  class="form-control" placeholder="Sección en el rack">
+                                        <span class="input-group-addon inventory-span-width">Ubicación #</span>
+                                        <input type="text" id="location"  class="form-control" placeholder="Ubicación en el rack. GDL-R01-S01">
                                     </div>
                                 </div>
 
@@ -136,8 +121,8 @@
 
                                 <div class="col-xs-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon inventory-span-width">Modelo #</span>
-                                        <input type="text" id="seccion"  class="form-control" placeholder="Articulo o modelo">
+                                        <span class="input-group-addon inventory-span-width">Estilo #</span>
+                                        <input type="text" id="seccion"  class="form-control" placeholder="Codigo de barra del producto">
                                     </div>
                                 </div>
 
